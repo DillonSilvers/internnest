@@ -10,6 +10,9 @@ let trackerCards = [
 const STAGES = ['saved', 'applied', 'interviewing', 'offer', 'rejected'];
 let cardCounter = 200;
 
+/* Premium unlock — replaced by the Stripe unlock check in Milestone 4 */
+function isUnlocked() { return false; }
+
 /* ====================================================
    INTERNSHIP DATA
    ==================================================== */
@@ -227,7 +230,7 @@ const DATA = {
 /* ====================================================
    FORM SUBMISSION → GENERATE MATCHES
    ==================================================== */
-document.getElementById('matchForm').addEventListener('submit', function (e) {
+document.getElementById('matchForm').addEventListener('submit', async function (e) {
   e.preventDefault();
 
   const user = {
@@ -249,19 +252,33 @@ document.getElementById('matchForm').addEventListener('submit', function (e) {
     return;
   }
 
-  const rawMatches = DATA[user.industry] || DATA.Finance;
+  // Show loading in the existing results section.
+  const section = document.getElementById('results');
+  document.getElementById('resultsHeading').textContent = 'Finding your matches…';
+  document.getElementById('resultsSubheading').textContent = 'Analyzing your profile against real internships.';
+  document.getElementById('matchCards').innerHTML =
+    '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray-500);font-weight:600">🤖 Scoring internships for you…</div>';
+  section.classList.remove('hidden');
+  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  const scored = rawMatches.map(job => {
-    let s = job.score;
-    const jobCity = job.location.split('/')[0].split(',')[0].toLowerCase().trim();
-    const userLoc = user.location.toLowerCase();
-    if (userLoc.includes(jobCity)) s = Math.min(99, s + 3);
-    if (user.worktype === 'remote' && job.type !== 'Remote') s = Math.max(50, s - 8);
-    if (user.worktype === 'onsite' && job.type === 'Remote') s = Math.max(50, s - 6);
-    return { ...job, score: s };
-  }).sort((a, b) => b.score - a.score);
-
-  renderResults(scored, user);
+  let matches = [];
+  try {
+    const resp = await fetch('/.netlify/functions/match', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ profile: user }),
+    });
+    const data = await resp.json();
+    matches = data.matches || [];
+  } catch (err) {
+    matches = [];
+  }
+  if (!matches.length) {
+    document.getElementById('matchCards').innerHTML =
+      '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray-500)">We couldn\'t load matches just now — please try again in a moment.</div>';
+    return;
+  }
+  renderResults(matches, user);
 });
 
 function renderResults(matches, user) {
@@ -271,7 +288,12 @@ function renderResults(matches, user) {
   document.getElementById('resultsSubheading').textContent =
     `We found ${matches.length} personalized internship matches based on your profile. Each includes your fit score, skill gaps, and a ready-to-send outreach message.`;
 
-  document.getElementById('matchCards').innerHTML = matches.map((job, i) => buildCard(job, user, i)).join('');
+  const isPremium = isUnlocked();
+  const shown = isPremium ? matches : matches.slice(0, 3);
+  document.getElementById('matchCards').innerHTML = shown.map((job, i) => buildCard(job, user, i)).join('')
+    + (!isPremium && matches.length > shown.length
+      ? `<div style="grid-column:1/-1;text-align:center;padding:24px"><a href="#pricing" class="btn-primary">Unlock all ${matches.length} matches + AI outreach →</a></div>`
+      : '');
   section.classList.remove('hidden');
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -286,8 +308,7 @@ function buildCard(job, user, index) {
     .map(s => `<li>${s}</li>`)
     .join('');
 
-  const outreachText = job.outreach
-    ? job.outreach(user.name, user.school)
+  const outreachText = (typeof job.outreach === 'string' && job.outreach) ? job.outreach
     : `Hi,\n\nI'm ${user.name} from ${user.school}. I'm interested in the ${job.title} role at ${job.company}.\n\nBest,\n${user.name}`;
 
   const titleEsc   = job.title.replace(/'/g, "\\'");
@@ -336,9 +357,9 @@ function buildCard(job, user, index) {
     <button class="btn-save" id="save-${job.id}" onclick="saveToTracker('${job.id}','${titleEsc}','${companyEsc}',${job.score})">
       🔖 Save to Tracker
     </button>
-    <button class="btn-primary" id="apply-${job.id}" onclick="markApplied('${job.id}','${titleEsc}','${companyEsc}',${job.score})">
+    <a class="btn-primary" id="apply-${job.id}" href="${job.application_url || '#'}" target="_blank" rel="noopener" onclick="markApplied('${job.id}','${titleEsc}','${companyEsc}',${job.score})">
       Apply Now →
-    </button>
+    </a>
   </div>
 </div>`;
 }
