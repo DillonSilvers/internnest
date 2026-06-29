@@ -9,6 +9,7 @@ let trackerCards = [
 
 const STAGES = ['saved', 'applied', 'interviewing', 'offer', 'rejected'];
 let cardCounter = 200;
+let lastResults = null;
 
 /* Premium unlock — Stripe-verified token stored per browser (Milestone 4) */
 function readUnlock() {
@@ -35,6 +36,35 @@ async function startCheckout(product) {
       ? 'Payments are not set up yet — check back soon.'
       : 'Could not start checkout. Please try again.');
   } catch (e) { alert('Could not start checkout. Please try again.'); }
+}
+
+function printReport() {
+  if (!lastResults) return;
+  const { matches, user } = lastResults;
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  const rows = matches.map((m, i) => `
+    <div class="r">
+      <h3>${i + 1}. ${esc(m.title)} — ${esc(m.company)}</h3>
+      <p class="meta">${esc(m.location || '')} · Match score ${esc(m.score)}</p>
+      <p>${esc(m.why || '')}</p>
+      ${(m.missing && m.missing.length) ? `<p><strong>Build these skills:</strong> ${esc(m.missing.join(', '))}</p>` : ''}
+      ${m.tip ? `<p><strong>Tip:</strong> ${esc(m.tip)}</p>` : ''}
+      ${m.application_url ? `<p><strong>Apply:</strong> ${esc(m.application_url)}</p>` : ''}
+    </div>`).join('');
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>InternNest Match Report</title>
+    <style>
+      body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;color:#1a1a2e;max-width:720px;margin:32px auto;padding:0 24px;line-height:1.5}
+      h1{font-size:24px}h3{margin:0 0 4px;font-size:16px}.meta{color:#667;margin:0 0 8px;font-size:13px}
+      .r{padding:16px 0;border-bottom:1px solid #eee;page-break-inside:avoid}
+      .head{margin-bottom:24px}
+    </style></head><body>
+    <div class="head"><h1>InternNest — Match Report</h1>
+      <p>Prepared for ${esc(user && user.name ? user.name : 'you')} · ${matches.length} matches</p></div>
+    ${rows}
+    <script>window.onload=function(){window.print();}<\/script>
+    </body></html>`;
+  const w = window.open('', '_blank');
+  if (w) { w.document.write(html); w.document.close(); }
 }
 
 /* On a successful return from Stripe (?paid=…&session_id=…), confirm + store the unlock. */
@@ -327,6 +357,7 @@ document.getElementById('matchForm').addEventListener('submit', async function (
 });
 
 function renderResults(matches, user) {
+  lastResults = { matches, user };
   const section = document.getElementById('results');
   document.getElementById('resultsHeading').textContent =
     `${user.name}, here are your top ${user.industry} matches`;
@@ -335,10 +366,14 @@ function renderResults(matches, user) {
 
   const isPremium = isUnlocked();
   const shown = isPremium ? matches : matches.slice(0, 3);
+  const reportBtn = hasReport()
+    ? `<div style="grid-column:1/-1;text-align:center;padding:8px 0 24px"><a class="btn-outline" href="#" onclick="printReport();return false;">🖨️ Print / Save as PDF</a></div>`
+    : '';
   document.getElementById('matchCards').innerHTML = shown.map((job, i) => buildCard(job, user, i)).join('')
     + (!isPremium && matches.length > shown.length
       ? `<div style="grid-column:1/-1;text-align:center;padding:24px"><a href="#pricing" class="btn-primary">Unlock all ${matches.length} matches + AI outreach →</a></div>`
-      : '');
+      : '')
+    + reportBtn;
   section.classList.remove('hidden');
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
