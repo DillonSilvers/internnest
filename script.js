@@ -10,8 +10,53 @@ let trackerCards = [
 const STAGES = ['saved', 'applied', 'interviewing', 'offer', 'rejected'];
 let cardCounter = 200;
 
-/* Premium unlock — replaced by the Stripe unlock check in Milestone 4 */
-function isUnlocked() { return false; }
+/* Premium unlock — Stripe-verified token stored per browser (Milestone 4) */
+function readUnlock() {
+  try {
+    const raw = localStorage.getItem('inn_unlock');
+    if (!raw) return null;
+    const body = JSON.parse(atob(raw.split('.')[0].replace(/-/g, '+').replace(/_/g, '/')));
+    if (!body || typeof body.exp !== 'number' || body.exp <= Date.now()) return null;
+    return body;
+  } catch (e) { return null; }
+}
+function isUnlocked() { return readUnlock() !== null; }
+function hasReport() { return localStorage.getItem('inn_report') === '1'; }
+
+async function startCheckout(product) {
+  try {
+    const res = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ product }),
+    });
+    const data = await res.json();
+    if (data.url) { window.location.href = data.url; return; }
+    alert(data.error === 'payments not configured'
+      ? 'Payments are not set up yet — check back soon.'
+      : 'Could not start checkout. Please try again.');
+  } catch (e) { alert('Could not start checkout. Please try again.'); }
+}
+
+/* On a successful return from Stripe (?paid=…&session_id=…), confirm + store the unlock. */
+async function handlePaymentReturn() {
+  const q = new URLSearchParams(window.location.search);
+  const sessionId = q.get('session_id');
+  if (!sessionId) return;
+  try {
+    const res = await fetch('/.netlify/functions/verify-unlock', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId }),
+    });
+    const data = await res.json();
+    if (data.token) {
+      localStorage.setItem('inn_unlock', data.token);
+      if (data.product === 'report') localStorage.setItem('inn_report', '1');
+    }
+  } catch (e) { /* leave locked; user can retry */ }
+  // Clean the URL so a refresh doesn't re-run verification.
+  window.history.replaceState({}, '', window.location.pathname + '#results');
+}
+document.addEventListener('DOMContentLoaded', handlePaymentReturn);
 
 /* ====================================================
    INTERNSHIP DATA
