@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InternPilot AI — Find Your Dream Internship</title>
+  <meta name="description" content="InternPilot AI matches college students with their best-fit internships using AI. Get personalized match scores, resume tips, and outreach messages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ======================== NAV ======================== -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">Intern<span class="logo-blue">Pilot</span><span class="logo-tag">AI</span></a>
+      <nav class="nav-links">
+        <a href="#how">How It Works</a>
+        <a href="#form">Get Matched</a>
+        <a href="#tracker">Tracker</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="nav-right">
+        <a href="#form" class="nav-cta">Start Free →</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#how" onclick="closeMobileMenu()">How It Works</a>
+      <a href="#form" onclick="closeMobileMenu()">Get Matched</a>
+      <a href="#tracker" onclick="closeMobileMenu()">Tracker</a>
+      <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+      <a href="#form" class="btn-primary" onclick="closeMobileMenu()">Start Free →</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ======================== HERO ======================== -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-pulse"></span>
+          AI-powered · Built for college students
+        </div>
+        <h1>Find Your Dream<br>Internship with AI</h1>
+        <p class="hero-sub">Fill out your goals, major, and skills. InternPilot AI finds your best-fit internships, scores each match, and helps you land the role with tailored resume tips and outreach messages.</p>
+        <div class="hero-actions">
+          <a href="#form" class="btn-primary btn-xl">Find Internships</a>
+          <a href="#how" class="btn-ghost btn-xl">See How It Works ↓</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>10,000+</strong><span>Internships tracked</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat"><strong>3 min</strong><span>To get matched</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat"><strong>Free</strong><span>To get started</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hv-card hv-main">
+          <div class="hv-card-top">
+            <div class="hv-avatar" style="background:#dbeafe;color:#2563eb;">S</div>
+            <div class="hv-info">
+              <div class="hv-company">Stripe</div>
+              <div class="hv-role">Product Manager Intern · San Francisco</div>
+            </div>
+            <div class="hv-score hv-score-high">94%</div>
+          </div>
+          <div class="hv-tags">
+            <span class="tag tag-blue">Summer 2025</span>
+            <span class="tag tag-gray">Remote OK</span>
+            <span class="tag tag-gray">Product</span>
+          </div>
+          <div class="hv-reasons">
+            <div class="reason-row reason-good"><span class="reason-icon">✓</span>CS + Business background aligns</div>
+            <div class="reason-row reason-good"><span class="reason-icon">✓</span>Strong product thinking skills</div>
+            <div class="reason-row reason-warn"><span class="reason-icon">!</span>Add SQL experience to resume</div>
+          </div>
+        </div>
+        <div class="hv-card hv-side hv-side-1">
+          <div class="hv-mini-score">
+            <svg viewBox="0 0 72 72" class="score-ring-svg">
+              <circle cx="36" cy="36" r="28" class="ring-track"/>
+              <circle cx="36" cy="36" r="28" class="ring-fill" style="stroke-dasharray:175.9;stroke-dashoffset:22;"/>
+            </svg>
+            <span class="ring-label">88%</span>
+          </div>
+          <div class="hv-mini-info"><strong>Google</strong><br><small>SWE Intern</small></div>
+        </div>
+        <div class="hv-card hv-side hv-side-2">
+          <div class="ai-icon">✦</div>
+          <p class="ai-label">"Outreach sent to 3 firms"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== HOW IT WORKS ======================== -->
+    <section id="how" class="section section-light">
+      <div class="section-header">
+        <div class="eyebrow">Simple 3-step process</div>
+        <h2>From blank resume to best-fit matches</h2>
+        <p class="section-sub">Most students find their top internship matches in under 3 minutes.</p>
+      </div>
+      <div class="steps-row">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-emoji">📋</div>
+          <h3>Tell us your dream internship</h3>
+          <p>Fill out your major, class year, dream industry, role, location, skills, and target companies. Takes about 2 minutes.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-emoji">🤖</div>
+          <h3>AI ranks the best-fit opportunities</h3>
+          <p>Our AI scores internships based on your profile — with a match score, explanation, and skill gap analysis for each.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-emoji">🚀</div>
+          <h3>Get resume, outreach &amp; application help</h3>
+          <p>Get AI-generated LinkedIn messages, resume bullet suggestions, and step-by-step application tips for every role.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== INTAKE FORM ======================== -->
+    <section id="form" class="section">
+      <div class="section-header">
+        <div class="eyebrow">Get matched free</div>
+        <h2>Tell us your dream internship</h2>
+        <p class="section-sub">The more detail you add, the smarter your matches will be.</p>
+      </div>
+      <div class="form-card">
+        <form id="matchForm" novalidate>
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="name">Full Name <span class="req">*</span></label>
+              <input type="text" id="name" placeholder="Your name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" placeholder="you@university.edu" required />
+            </div>
+
+            <div class="form-group">
+              <label for="school">School / University <span class="req">*</span></label>
+              <input type="text" id="school" placeholder="e.g. Boston University" required />
+            </div>
+
+            <div class="form-group">
+              <label for="major">Major <span class="req">*</span></label>
+              <input type="text" id="major" placeholder="e.g. Finance, Computer Science" required />
+            </div>
+
+            <div class="form-group">
+              <label for="year">Class Year <span class="req">*</span></label>
+              <select id="year" required>
+                <option value="">Select year</option>
+                <option>Freshman</option>
+                <option>Sophomore</option>
+                <option>Junior</option>
+                <option>Senior</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="industry">Dream Industry <span class="req">*</span></label>
+              <select id="industry" required>
+                <option value="">Select industry</option>
+                <option>Finance</option>
+                <option>Technology</option>
+                <option>Marketing</option>
+                <option>Consulting</option>
+                <option>Healthcare</option>
+                <option>Sports Business</option>
+                <option>Media &amp; Entertainment</option>
+                <option>Real Estate</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="role">Dream Role <span class="req">*</span></label>
+              <input type="text" id="role" placeholder="e.g. Investment Banking Analyst, PM, SWE" required />
+            </div>
+
+            <div class="form-group">
+              <label for="location">Preferred Location <span class="req">*</span></label>
+              <input type="text" id="location" placeholder="e.g. New York, Remote, Boston" required />
+            </div>
+
+            <div class="form-group">
+              <label for="worktype">Work Preference</label>
+              <select id="worktype">
+                <option value="any">Any (Remote / Hybrid / In-Person)</option>
+                <option value="remote">Remote only</option>
+                <option value="hybrid">Hybrid preferred</option>
+                <option value="onsite">In-person only</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="companies">Target Companies</label>
+              <input type="text" id="companies" placeholder="e.g. Goldman Sachs, Google, McKinsey" />
+            </div>
+
+            <div class="form-group form-full">
+              <label for="skills">Your Skills <span class="req">*</span></label>
+              <textarea id="skills" placeholder="e.g. Excel, Python, SQL, PowerPoint, public speaking, social media, writing..." required></textarea>
+            </div>
+
+            <div class="form-group form-full">
+              <label>Resume Upload <span class="form-opt">(optional)</span></label>
+              <div class="upload-zone" id="uploadZone" onclick="document.getElementById('resumeFile').click()">
+                <div class="upload-icon">📎</div>
+                <div class="upload-text">
+                  <strong id="uploadLabel">Click to upload your resume</strong>
+                  <span>PDF, DOC, DOCX — max 10 MB</span>
+                </div>
+                <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" style="display:none" onchange="handleFileUpload(this)" />
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-submit-row">
+            <button type="submit" class="btn-primary btn-xl btn-submit" id="submitBtn">
+              <span class="submit-icon">🤖</span>
+              Find My Internship Matches
+            </button>
+            <p class="form-note">No spam. No credit card. We'll show your matches right here.</p>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+    <!-- ======================== RESULTS (hidden until submit) ======================== -->
+    <section id="results" class="section results-section hidden">
+      <div class="section-header">
+        <div class="eyebrow">Your personalized matches</div>
+        <h2 id="resultsHeading">Your Top Internship Matches</h2>
+        <p class="section-sub" id="resultsSubheading">Based on your profile, here are the best opportunities we found for you.</p>
+      </div>
+      <div id="matchCards" class="match-cards-grid"></div>
+    </section>
+
+    <!-- ======================== TRACKER DASHBOARD ======================== -->
+    <section id="tracker" class="section section-light tracker-section">
+      <div class="section-header">
+        <div class="eyebrow">Stay organized</div>
+        <h2>Application Tracker</h2>
+        <p class="section-sub">Track every internship from saved to offer. Use the buttons on each card to advance its stage.</p>
+      </div>
+      <div class="tracker-board" id="trackerBoard">
+
+        <div class="tracker-col" data-stage="saved">
+          <div class="col-header">
+            <span class="col-icon">🔖</span>
+            <span class="col-title">Saved</span>
+            <span class="col-badge" id="count-saved">0</span>
+          </div>
+          <div class="col-cards" id="col-saved"></div>
+          <button class="add-card-btn" onclick="promptAddCard()">+ Add internship</button>
+        </div>
+
+        <div class="tracker-col" data-stage="applied">
+          <div class="col-header">
+            <span class="col-icon">📤</span>
+            <span class="col-title">Applied</span>
+            <span class="col-badge" id="count-applied">0</span>
+          </div>
+          <div class="col-cards" id="col-applied"></div>
+        </div>
+
+        <div class="tracker-col" data-stage="interviewing">
+          <div class="col-header">
+            <span class="col-icon">🎤</span>
+            <span class="col-title">Interviewing</span>
+            <span class="col-badge" id="count-interviewing">0</span>
+          </div>
+          <div class="col-cards" id="col-interviewing"></div>
+        </div>
+
+        <div class="tracker-col" data-stage="offer">
+          <div class="col-header">
+            <span class="col-icon">🎉</span>
+            <span class="col-title">Offer</span>
+            <span class="col-badge" id="count-offer">0</span>
+          </div>
+          <div class="col-cards" id="col-offer"></div>
+        </div>
+
+        <div class="tracker-col" data-stage="rejected">
+          <div class="col-header">
+            <span class="col-icon">✗</span>
+            <span class="col-title">Rejected</span>
+            <span class="col-badge" id="count-rejected">0</span>
+          </div>
+          <div class="col-cards" id="col-rejected"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================== PRICING ======================== -->
+    <section id="pricing" class="section">
+      <div class="section-header">
+        <div class="eyebrow">Simple pricing</div>
+        <h2>Plans built for college students</h2>
+        <p class="section-sub">Start free. Upgrade when you're ready to land the offer.</p>
+      </div>
+      <div class="pricing-grid">
+
+        <div class="price-card">
+          <div class="plan-label">Free</div>
+          <div class="plan-price-row">
+            <span class="plan-amount">$0</span>
+            <span class="plan-period">/month</span>
+          </div>
+          <p class="plan-desc">Start finding matches today with zero commitment.</p>
+          <ul class="plan-features">
+            <li class="feat-yes">Up to 5 internship matches</li>
+            <li class="feat-yes">Basic match explanations</li>
+            <li class="feat-yes">Application tracker</li>
+            <li class="feat-no">AI outreach messages</li>
+            <li class="feat-no">Resume feedback</li>
+            <li class="feat-no">Missing skills roadmap</li>
+          </ul>
+          <a href="#form" class="btn-outline">Get started free</a>
+        </div>
+
+        <div class="price-card price-featured">
+          <div class="popular-flag">Most Popular</div>
+          <div class="plan-label">Premium</div>
+          <div class="plan-price-row">
+            <span class="plan-amount">$9.99</span>
+            <span class="plan-period">/month</span>
+          </div>
+          <p class="plan-desc">Everything you need to land your dream internship.</p>
+          <ul class="plan-features">
+            <li class="feat-yes">Unlimited internship matches</li>
+            <li class="feat-yes">Full match explanations + scores</li>
+            <li class="feat-yes">Application tracker</li>
+            <li class="feat-yes">AI-generated outreach messages</li>
+            <li class="feat-yes">Resume bullet suggestions</li>
+            <li class="feat-yes">Missing skills roadmap</li>
+            <li class="feat-yes">Interview prep questions</li>
+          </ul>
+          <a href="#form" class="btn-primary">Start Premium — $9.99/mo</a>
+        </div>
+
+        <div class="price-card">
+          <div class="plan-label">Match Report</div>
+          <div class="plan-price-row">
+            <span class="plan-amount">$29</span>
+            <span class="plan-period"> one-time</span>
+          </div>
+          <p class="plan-desc">A full personalized report — perfect for one application season.</p>
+          <ul class="plan-features">
+            <li class="feat-yes">Full match report (PDF)</li>
+            <li class="feat-yes">Top 10 ranked internships</li>
+            <li class="feat-yes">Skill gap analysis</li>
+            <li class="feat-yes">Outreach messages for top 3</li>
+            <li class="feat-yes">Resume improvement notes</li>
+            <li class="feat-yes">One-time, no subscription</li>
+          </ul>
+          <a href="#form" class="btn-outline">Buy Report — $29</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">Intern<span class="logo-blue">Pilot</span><span class="logo-tag">AI</span></div>
+        <p>The AI-powered internship platform built for college students who want to land their dream role.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">IG</a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#how">How It Works</a>
+          <a href="#form">Get Matched</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#tracker">App Tracker</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 InternPilot AI. Built by students, for students.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
