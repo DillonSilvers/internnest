@@ -14,7 +14,7 @@ logins. Jack is building it for you and hands over all the keys at the end.
 
 | Service | What it's for | Who pays | Rough cost |
 |---------|---------------|----------|-----------|
-| **GitHub** | Stores the website's code (the master copy) | Free | $0 |
+| **GitHub** | Stores the website's code (the master copy; repo is **public** so Netlify's free plan can build it) | Free | $0 |
 | **Netlify** | Hosts the live website + runs the "behind-the-scenes" code | Free tier | $0 until heavy traffic |
 | **GoDaddy** | Your domain name, internnest.ai | You | ~$70–100 / year |
 | **Stripe** | Takes card payments, deposits money to your bank | Per sale | ~2.9% + 30¢ per sale |
@@ -46,6 +46,7 @@ A full walkthrough + lessons come at handoff.
 
 ## Current status
 
-- ✅ Code on GitHub, live on Netlify, auto-updates on every change
-- ⏳ Domain internnest.ai pointing to the site (DNS + SSL finishing on their own)
-- 🔜 Rebrand to InternNest, real AI matcher, Stripe payments
+- ✅ Code on GitHub (**public** repo `jackryan225/internnest`), live on Netlify, auto-deploys on every push
+- ✅ Domain **internnest.ai** live with SSL
+- ✅ Rebranded to InternNest (logo, favicon, wordmark)
+- 🔜 Real AI matcher, Stripe payments

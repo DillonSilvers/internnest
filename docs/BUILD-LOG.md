@@ -45,3 +45,21 @@ but kept readable. Newest entries at the bottom.
 - Fixed fee **$1,600** this round (basic-but-real AI + full MVP); more depending on performance.
   Jack = contractor for Dillon. Full handoff: ownership transfer of all accounts + maintenance
   lessons + the Owner's Guide.
+
+## 2026-06-29 — Rebrand shipped (Milestone 1 complete)
+
+- Rebranded InternPilot → **InternNest** site-wide: nav + footer wordmark now "Intern**Nest**`.ai`".
+  Chose a clean text wordmark over the square badge logo (the badge doesn't fit a 66px nav); the
+  badge is the **favicon**. Updated title, meta description, hero subheading, footer copyright.
+  Renamed the logo asset to `internnest-logo.png`.
+- Fixed a **pre-existing glitch** (Dillon had flagged it): the mobile menu rendered open at desktop
+  because `#mobileMenu` lacked the `hidden` class and nothing hid `.mobile-menu` at desktop. One-line
+  fix: `<div class="mobile-menu hidden" ...>`.
+- Renamed the GitHub repo `internpilot-ai` → **`internnest`** (old URL auto-redirects).
+- **Netlify gotcha (important):** git-triggered deploys were failing — *"Build blocked: unrecognized
+  Git contributor; this plan allows only verified members to push to private repos."* Netlify's free
+  plan blocks builds on **private** repos pushed by non-account-members. **Fix: made the repo PUBLIC.**
+  Note: clicking "Trigger deploy" kept failing (cached "private" view); a fresh **git push** forced
+  Netlify to re-read the repo as public and the build passed. Auto-deploy on push now works.
+- ✅ Verified live at **https://internnest.ai** (HTTP 200, valid SSL, 0 "InternPilot" refs;
+  InternNest wordmark + favicon + menu fix all present).

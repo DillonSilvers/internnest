@@ -7,3 +7,6 @@
 
 # Local secrets (Netlify functions)
 .env
+
+# Local dev tooling
+.claude/launch.json
