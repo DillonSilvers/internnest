@@ -196,3 +196,15 @@ auth + a `profiles` table with RLS + a signup trigger — all set up via the das
 - Verified: 22/22 lib tests still green; login modal + magic-link send confirmed against the live
   Supabase project; Vercel deploy healthy (`create-checkout` accepts `user_id`, supabase-js loads).
 - Supabase config: Site URL = internnest.ai; redirect allow-list for prod + vercel.app + localhost.
+
+## 2026-06-30 — Google sign-in enabled
+
+- Created a Google OAuth **Web** client (redirect URI = the Supabase callback
+  `https://wupynvbrmbpzibwkobui.supabase.co/auth/v1/callback`), enabled the **Google** provider in
+  Supabase with the client ID + secret. Verified end-to-end: the site's "Continue with Google" button
+  redirects correctly to Google's account chooser → Supabase callback.
+- **Temporary location:** the OAuth client lives in **Jack's** Google Cloud project ("My First Project",
+  shared with the peptide site), in **testing** mode — so Google login works for **test users** now;
+  the consent screen shows that project's branding. At handoff, recreate under **Dillon's** own Google
+  Cloud project with InternNest branding + publish the consent screen (email/profile scopes need no
+  Google review). No app code changed (the Google button was already built).
