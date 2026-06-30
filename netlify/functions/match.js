@@ -1,9 +1,9 @@
 'use strict';
 const { getStore } = require('@netlify/blobs');
 const listings = require('../../internships.json');
-const { prefilter, deterministicRank } = require('../lib/matcher');
-const { buildMatchPrompt, parseMatchResponse, callClaude } = require('../lib/claude');
-const { checkRateLimit } = require('../lib/ratelimit');
+const { prefilter, deterministicRank } = require('../../lib/matcher');
+const { buildMatchPrompt, parseMatchResponse, callClaude } = require('../../lib/claude');
+const { checkRateLimit } = require('../../lib/ratelimit');
 
 const json = (statusCode, obj) => ({ statusCode, headers: { 'content-type': 'application/json' }, body: JSON.stringify(obj) });
 

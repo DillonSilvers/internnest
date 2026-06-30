@@ -1,5 +1,5 @@
 'use strict';
-const { createCheckoutSession, PRODUCTS } = require('../lib/stripe');
+const { createCheckoutSession, PRODUCTS } = require('../../lib/stripe');
 
 const json = (statusCode, obj) => ({ statusCode, headers: { 'content-type': 'application/json' }, body: JSON.stringify(obj) });
 

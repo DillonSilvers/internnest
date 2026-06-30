@@ -4,3 +4,10 @@
 
 [functions]
   node_bundler = "esbuild"
+
+# Transition shim: serve the new /api/* paths from the existing Netlify functions,
+# so the live site keeps working until DNS cuts over to Vercel (then this host is retired).
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

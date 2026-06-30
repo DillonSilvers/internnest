@@ -154,3 +154,27 @@ Design freeze lifted for this round.
   **Liquid Glass** (frosted/gradient showpiece), **Dark** (premium high-contrast). Delete after the call.
 - **Still Dillon's to do:** Netlify billing (the account kept 503'ing on usage limits), Stripe go-live
   (KYC done), the domain Outlook email, and the social links (footer icons are placeholders until sent).
+
+## 2026-06-30 — Migrating off Netlify → Vercel (Pro)
+
+Dillon's Netlify account kept tripping the credit-based Free plan (300 credits/period) — the site
+503'd twice ("usage exceeded"), recovered only via a one-time grace top-up. Jack decided to leave
+Netlify for **Vercel Pro** (predictable flat pricing; per-file serverless functions fit our matcher;
+no surprise credit cutoffs). Render was considered and rejected (free web service sleeps → 30–60s
+cold start on the matcher).
+
+- **Shared logic** moved `netlify/lib/` → top-level `lib/` (platform-neutral); both function sets import it.
+- **Vercel functions** added under `api/` in `(req,res)` format: `match`, `create-checkout`,
+  `verify-unlock`, `contact`. `vercel.json` sets cleanUrls + function maxDuration (match=30s).
+- **Frontend** repointed from `/.netlify/functions/*` → **`/api/*`**.
+- **Zero-downtime shim:** `netlify.toml` now rewrites `/api/* → /.netlify/functions/:splat`, so the
+  live Netlify site keeps serving `/api/*` until DNS cuts over to Vercel. Both hosts work during cutover.
+- **Rate-limiter dropped** for Vercel (was `@netlify/blobs`, Netlify-only). The $50 Anthropic spend cap
+  is the real backstop; can add Vercel KV later if needed.
+- **Contact form** moved off Netlify Forms → JS submit to `/api/contact`. Sends via Resend **if**
+  `RESEND_API_KEY` is set (else accepts + logs). Mirror `netlify/functions/contact.js` for the shim.
+- Verified locally: 22/22 lib tests pass; `api/*` adapters smoke-tested (mock req/res); `/api/*` work
+  end-to-end through the Netlify dev shim. Anthropic key confirmed valid.
+- **Cutover (Dillon, his account):** create Vercel project from the GitHub repo → add env vars
+  (ANTHROPIC_API_KEY, STRIPE_SECRET_KEY, UNLOCK_SIGNING_SECRET; optional RESEND_API_KEY/CONTACT_TO)
+  → verify on the *.vercel.app URL → point internnest.ai DNS at Vercel → retire the Netlify site.

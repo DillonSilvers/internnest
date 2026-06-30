@@ -30,7 +30,7 @@ function hasReport() { return localStorage.getItem('inn_report') === '1'; }
 
 async function startCheckout(product) {
   try {
-    const res = await fetch('/.netlify/functions/create-checkout', {
+    const res = await fetch('/api/create-checkout', {
       method: 'POST', headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ product }),
     });
@@ -77,7 +77,7 @@ async function handlePaymentReturn() {
   const sessionId = q.get('session_id');
   if (!sessionId) return;
   try {
-    const res = await fetch('/.netlify/functions/verify-unlock', {
+    const res = await fetch('/api/verify-unlock', {
       method: 'POST', headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ session_id: sessionId }),
     });
@@ -343,7 +343,7 @@ if (matchFormEl) matchFormEl.addEventListener('submit', async function (e) {
 
   let matches = [];
   try {
-    const resp = await fetch('/.netlify/functions/match', {
+    const resp = await fetch('/api/match', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ profile: user }),
@@ -586,6 +586,39 @@ function showToast(msg) {
 const hamburgerEl = document.getElementById('hamburger');
 if (hamburgerEl) hamburgerEl.addEventListener('click', () => {
   document.getElementById('mobileMenu').classList.toggle('hidden');
+});
+
+/* ====================================================
+   CONTACT FORM (contact page only)
+   ==================================================== */
+const contactForm = document.getElementById('contactForm');
+if (contactForm) contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('contactSubmit');
+  const status = document.getElementById('contactStatus');
+  const payload = {
+    name: document.getElementById('cname').value.trim(),
+    email: document.getElementById('cemail').value.trim(),
+    message: document.getElementById('cmsg').value.trim(),
+  };
+  if (!payload.name || !payload.email || !payload.message) {
+    status.style.color = 'var(--red)'; status.textContent = 'Please fill in all fields.'; return;
+  }
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const r = await fetch('/api/contact', {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload),
+    });
+    if (!r.ok) throw new Error('bad status');
+    contactForm.reset();
+    status.style.color = 'var(--green)';
+    status.textContent = "Thanks — your message was sent. We'll get back to you soon.";
+    btn.textContent = 'Sent';
+  } catch (err) {
+    status.style.color = 'var(--red)';
+    status.textContent = 'Something went wrong. Please email hello@internnest.ai instead.';
+    btn.disabled = false; btn.textContent = 'Send message';
+  }
 });
 
 function closeMobileMenu() {

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "functions": {
+    "api/match.js": { "maxDuration": 30 },
+    "api/create-checkout.js": { "maxDuration": 15 },
+    "api/verify-unlock.js": { "maxDuration": 15 },
+    "api/contact.js": { "maxDuration": 10 }
+  }
+}

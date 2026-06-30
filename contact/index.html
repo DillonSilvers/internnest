@@ -58,13 +58,12 @@
           <p>Already using InternNest? The fastest help is right in the app — run the matcher and use the tracker to stay organized.</p>
         </div>
         <div class="form-card contact-card">
-          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact" />
-            <p class="hidden"><label>Don&rsquo;t fill this out: <input name="bot-field" /></label></p>
+          <form id="contactForm" novalidate>
             <div class="form-group"><label for="cname">Name <span class="req">*</span></label><input type="text" id="cname" name="name" required /></div>
             <div class="form-group"><label for="cemail">Email <span class="req">*</span></label><input type="email" id="cemail" name="email" required /></div>
             <div class="form-group form-full"><label for="cmsg">Message <span class="req">*</span></label><textarea id="cmsg" name="message" required></textarea></div>
-            <button type="submit" class="btn-primary btn-xl">Send message</button>
+            <button type="submit" class="btn-primary btn-xl" id="contactSubmit">Send message</button>
+            <p class="form-note" id="contactStatus" style="margin-top:14px"></p>
           </form>
         </div>
       </div>

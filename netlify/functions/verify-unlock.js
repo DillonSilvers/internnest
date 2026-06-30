@@ -1,6 +1,6 @@
 'use strict';
-const { retrieveSession } = require('../lib/stripe');
-const { signUnlockToken } = require('../lib/unlock');
+const { retrieveSession } = require('../../lib/stripe');
+const { signUnlockToken } = require('../../lib/unlock');
 
 const json = (statusCode, obj) => ({ statusCode, headers: { 'content-type': 'application/json' }, body: JSON.stringify(obj) });
 const YEAR_MS = 365 * 24 * 60 * 60 * 1000;
