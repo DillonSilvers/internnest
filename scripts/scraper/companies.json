@@ -1,0 +1,834 @@
+{
+  "_comment": "Your reps file. Add companies by ATS. slug = the id in their careers URL (see README). industry_hint helps the AI classify. Bad slugs just log a warning \u2014 safe to experiment.",
+  "greenhouse": [
+    {
+      "slug": "stripe",
+      "name": "Stripe",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "databricks",
+      "name": "Databricks",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "duolingo",
+      "name": "Duolingo",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "doordashusa",
+      "name": "DoorDash",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "robinhood",
+      "name": "Robinhood",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "coinbase",
+      "name": "Coinbase",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "brex",
+      "name": "Brex",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "pinterest",
+      "name": "Pinterest",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "vercel",
+      "name": "Vercel",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "accuweather",
+      "name": "AccuWeather",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "acluinternships",
+      "name": "ACLU Kentucky",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "aechelontechnology",
+      "name": "Aechelon Technology",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "amarok",
+      "name": "AMAROK Security",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "andurilindustries",
+      "name": "Anduril",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "aquaticcapitalmanagement",
+      "name": "Aquatic Capital Management",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "arine",
+      "name": "Arine",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "asteraearlycareer2026",
+      "name": "Astera Labs",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "astranis",
+      "name": "Astranis",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "axq",
+      "name": "AXQ Capital",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "billiontoone",
+      "name": "BillionToOne",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "brightai",
+      "name": "BrightAI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "bugcrowd",
+      "name": "Bugcrowd",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "clarityinnovates",
+      "name": "Clarity Innovations",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "cresta",
+      "name": "Cresta",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "didi",
+      "name": "DiDi Global",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "digs",
+      "name": "Digs",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "docugami",
+      "name": "Docugami",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "embed",
+      "name": "Gemini",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "eulerity",
+      "name": "Eulerity",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "faire",
+      "name": "Faire",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "fccincinnati",
+      "name": "Fussball Club Cincinnati LLC (\u201cFC Cincinnati\u201d)",
+      "industry_hint": "Sports Business"
+    },
+    {
+      "slug": "figureai",
+      "name": "Figure",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "fourhands",
+      "name": "Four Hands",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "fschumacherco",
+      "name": "F. Schumacher & Co.",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "ftandinternships",
+      "name": "Stevens Capital Management",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "genscript",
+      "name": "GenScript",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "ginkgobioworks",
+      "name": "Ginkgo Bioworks",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "haizelabs",
+      "name": "Haize Labs",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "harbingermotors",
+      "name": "Harbinger Motors",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "iherb",
+      "name": "iHerb",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "instawork",
+      "name": "Instawork",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "instead",
+      "name": "Instead",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "integrainterns",
+      "name": "Integra FEC",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "ispottv",
+      "name": "iSpot.tv",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "jobsatphamily",
+      "name": "Phamily",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "kensingtontours",
+      "name": "Kensington",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "lightmatter",
+      "name": "Lightmatter",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "lucidmotors",
+      "name": "Lucid Motors",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "mcghealth",
+      "name": "MCG Health",
+      "industry_hint": "Healthcare"
+    },
+    {
+      "slug": "medicalinformaticsengineering",
+      "name": "Medical Informatics Engineering",
+      "industry_hint": "Healthcare"
+    },
+    {
+      "slug": "msfcareers",
+      "name": "Doctors Without Borders",
+      "industry_hint": "Healthcare"
+    },
+    {
+      "slug": "neuralink",
+      "name": "Neuralink",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "newsbreak",
+      "name": "NewsBreak",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "octaura",
+      "name": "Octaura",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "offerup",
+      "name": "OfferUp",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "plscareers",
+      "name": "PLS",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "podium81",
+      "name": "Podium",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "point72",
+      "name": "Point72",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "pointc",
+      "name": "Point C",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "queracomputinginc",
+      "name": "QuEra Computing",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "radixuniversity",
+      "name": "Radix Trading",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "rise8",
+      "name": "Rise8",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "rocketlab",
+      "name": "Rocket Lab USA",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "samayaai",
+      "name": "Samaya",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "samsungresearchamericainternship",
+      "name": "Samsung Research America",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "scaleai",
+      "name": "Scale AI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "scminternships",
+      "name": "Stevens Capital Management",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "sevenresearch",
+      "name": "Seven Research",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "sezzle",
+      "name": "Sezzle",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "shein",
+      "name": "SHEIN",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "silananotechnologies",
+      "name": "Sila Nanotechnologies",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "spacex",
+      "name": "SpaceX",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "studiokraftonboard",
+      "name": "KRAFTON",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "technergetics",
+      "name": "Technergetics",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "tenstorrentuniversity",
+      "name": "Tenstorrent",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "togetherai",
+      "name": "Together AI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "torcrobotics",
+      "name": "Torc Robotics",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "transmarketgroup",
+      "name": "TransMarket Group",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "verkada",
+      "name": "Verkada",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "virtu",
+      "name": "Virtu Financial",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "walleyecapital",
+      "name": "Walleye Capital",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "workato",
+      "name": "Workato",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "xpengmotors",
+      "name": "XPENG Motors",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "zone5technologies",
+      "name": "Zone 5 Technologies",
+      "industry_hint": "Technology"
+    }
+  ],
+  "lever": [
+    {
+      "slug": "palantir",
+      "name": "Palantir",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "plaid",
+      "name": "Plaid",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "spotify",
+      "name": "Spotify",
+      "industry_hint": "Media & Entertainment"
+    },
+    {
+      "slug": "aisafety",
+      "name": "Center for AI Safety",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "cirrus",
+      "name": "Cirrus Logic",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "ekimetrics",
+      "name": "Ekimetrics",
+      "industry_hint": "Consulting"
+    },
+    {
+      "slug": "evrealty-us",
+      "name": "EV Realty",
+      "industry_hint": "Real Estate"
+    },
+    {
+      "slug": "field-ai",
+      "name": "Field AI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "fluxergy-2",
+      "name": "Fluxergy",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "genbio",
+      "name": "GenBio AI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "hermeus",
+      "name": "Hermeus",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "ifm-us",
+      "name": "Institute of Foundation Models",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "kepler",
+      "name": "Kepler Communications",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "make-rain",
+      "name": "Rainmaker",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "plus-2",
+      "name": "PlusAI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "reply",
+      "name": "Reply",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "solopulseco",
+      "name": "SoloPulse",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "symmetrysystems",
+      "name": "Symmetry Systems",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "tri",
+      "name": "Toyota Research Institute",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "veeva",
+      "name": "Veeva Systems",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "waabi",
+      "name": "Waabi",
+      "industry_hint": "Technology"
+    }
+  ],
+  "ashby": [
+    {
+      "slug": "openai",
+      "name": "OpenAI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "linear",
+      "name": "Linear",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "ramp",
+      "name": "Ramp",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "notion",
+      "name": "Notion",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "1password",
+      "name": "1Password",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "afterquery",
+      "name": "AfterQuery",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "apex-technology-inc",
+      "name": "Apex",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "applied",
+      "name": "Applied Intuition",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "astera",
+      "name": "Astera",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "atomicsemi",
+      "name": "Atomic Semi",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "auctor",
+      "name": "Auctor",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "base-power",
+      "name": "Base Power",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "binance",
+      "name": "Binance",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "blockhouse",
+      "name": "Blockhouse",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "centerfield",
+      "name": "Centerfield",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "clera",
+      "name": "Clera",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "cohere",
+      "name": "Cohere",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "creatify",
+      "name": "Creatify Lab",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "d-matrix",
+      "name": "d-Matrix",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "dandy",
+      "name": "Dandy",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "dryft",
+      "name": "Dryft",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "espa",
+      "name": "Espa AI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "etched",
+      "name": "Etched.ai",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "flagright",
+      "name": "Flagright",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "greatquestion",
+      "name": "Great Question",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "gumloop",
+      "name": "Gumloop",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "heron-power",
+      "name": "Heron Power",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "hiverge",
+      "name": "Hiverge",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "kognitos",
+      "name": "Kognitos",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "kos",
+      "name": "kos.ai",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "lambda",
+      "name": "Lambda",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "maxima",
+      "name": "Maxima",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "mechanize",
+      "name": "Mechanize",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "melotech",
+      "name": "Melotech",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "mercor",
+      "name": "Mercor",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "meshy",
+      "name": "Meshy",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "nash",
+      "name": "Nash",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "niural",
+      "name": "Niural",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "outmarket",
+      "name": "Outmarket AI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "output",
+      "name": "Output Biosciences",
+      "industry_hint": "Healthcare"
+    },
+    {
+      "slug": "pebl",
+      "name": "Pebl",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "perplexity",
+      "name": "Perplexity AI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "phia",
+      "name": "Phia",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "reacher",
+      "name": "Reacher",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "regent",
+      "name": "REGENT",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "rivianvw",
+      "name": "Rivian and Volkswagen Group Technologies",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "root-access",
+      "name": "Root Access",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "saronic",
+      "name": "Saronic",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "simular",
+      "name": "Simular",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "skydio",
+      "name": "Skydio",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "solva",
+      "name": "Solva",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "super",
+      "name": "Super",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "tenex",
+      "name": "TENEX.AI",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "tessera-labs",
+      "name": "Tessera Labs",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "the-exploration-company",
+      "name": "The Exploration Company",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "uncountable",
+      "name": "Uncountable",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "walrusfi",
+      "name": "Walrus",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "wealth-com",
+      "name": "Wealth.com",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "windborne-systems",
+      "name": "WindBorne Systems",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "zip",
+      "name": "Zip",
+      "industry_hint": "Technology"
+    }
+  ]
+}

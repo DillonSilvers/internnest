@@ -16,3 +16,10 @@ node_modules/
 
 # Local Netlify folder
 .netlify
+
+# Scraper working files (candidates get reviewed + merged, never committed raw)
+scripts/scraper/candidates.json
+internships.backup.json
+
+# Vendored WebGPU experiment (reference only)
+liquid-dom-master/
