@@ -63,6 +63,18 @@ python3 scrape.py --selftest                  # offline sanity check
 python3 merge.py --limit 100                  # merge only the first 100
 ```
 
+## Schema depth — JD enrichment (`enrich.py`)
+
+After merging, `python3 -u enrich.py` fetches each listing's **full job
+description** from its board and has **Claude Sonnet** extract stated
+eligibility facts: `gpa_min`, `class_years`, `sponsorship` (visa stance),
+`paid`, `deadline`, plus cleaner location/work-type. Only facts the JD
+explicitly states get written — no guessing. The matcher then hard-gates
+ineligible students (below a stated GPA minimum, wrong class year) and the
+match AI sees the requirements in its prompt. Re-runs skip already-enriched
+records, so run it after every merge; cost is roughly $6–8 for a full first
+pass and cents thereafter.
+
 ## Quality guardrails (already built in)
 
 - Title must contain "intern(ship)" — and the AI screens for real student roles.

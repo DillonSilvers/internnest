@@ -52,9 +52,10 @@ def load_api_key():
     return ''
 
 
-def call_claude(api_key, system, user, max_tokens=3500):
+def call_claude(api_key, system, user, max_tokens=3500, model=MODEL):
+    # no `temperature`: newer models (sonnet-5+) reject it as deprecated
     body = json.dumps({
-        'model': MODEL, 'max_tokens': max_tokens, 'temperature': 0,
+        'model': model, 'max_tokens': max_tokens,
         'system': system, 'messages': [{'role': 'user', 'content': user}],
     }).encode()
     req = urllib.request.Request(
