@@ -420,6 +420,31 @@
       "slug": "zone5technologies",
       "name": "Zone 5 Technologies",
       "industry_hint": "Technology"
+    },
+    {
+      "slug": "60decibelsinc",
+      "name": "60decibelsinc",
+      "industry_hint": "Consulting"
+    },
+    {
+      "slug": "cloudflare",
+      "name": "Cloudflare",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "evolver",
+      "name": "Evolver",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "optiverprivate",
+      "name": "Optiver",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "vardaspace",
+      "name": "Varda Space",
+      "industry_hint": "Technology"
     }
   ],
   "lever": [
@@ -828,6 +853,36 @@
     {
       "slug": "zip",
       "name": "Zip",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "context",
+      "name": "Context",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "fundwell",
+      "name": "Fundwell",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "human-computer-lab",
+      "name": "Human Computer Lab",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "interplay",
+      "name": "Internship",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "nox-metals",
+      "name": "NOX METALS",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "periodic-labs",
+      "name": "Periodic Labs",
       "industry_hint": "Technology"
     }
   ]
