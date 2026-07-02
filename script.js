@@ -841,6 +841,10 @@ function renderAuthNav() {
       m.onclick = (e) => { e.preventDefault(); closeMobileMenu(); openLogin(); };
     }
   }
+  // Signed-in users never see "Start Free" — the CTA reads Get Matched instead.
+  const ctaText = authUser ? 'Get Matched →' : 'Start Free →';
+  document.querySelectorAll('.nav-cta').forEach((a) => { a.textContent = ctaText; });
+  if (mm) { const mmCta = mm.querySelector('.btn-primary'); if (mmCta) mmCta.textContent = ctaText; }
 }
 
 async function initAuth() {
