@@ -25,6 +25,12 @@ module.exports = async (req, res) => {
   const premium = !!verifyUnlockToken(body.token, process.env.UNLOCK_SIGNING_SECRET, Date.now());
   const tier = premium ? 'premium' : 'free';
 
+  // Optional resume: base64 PDF, capped well under Vercel's request-body limit.
+  const resume = (body.resume && typeof body.resume.data === 'string'
+    && body.resume.media_type === 'application/pdf'
+    && body.resume.data.length > 100 && body.resume.data.length < 4200000)
+    ? { data: body.resume.data } : null;
+
   const candidates = prefilter(profile, listings);
   if (candidates.length === 0) return res.status(200).json({ matches: [], mode: 'empty', tier });
 
@@ -32,10 +38,18 @@ module.exports = async (req, res) => {
   if (apiKey) {
     const aiCandidates = candidates.slice(0, 8);
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), premium ? 20000 : 15000);
+    const timer = setTimeout(() => controller.abort(), 60000);
     try {
-      const { system, user } = buildMatchPrompt(profile, aiCandidates);
-      const text = await callClaude({ apiKey, system, user, model: modelFor(premium), signal: controller.signal });
+      const { system, user } = buildMatchPrompt(profile, aiCandidates, !!resume);
+      let text;
+      try {
+        text = await callClaude({ apiKey, system, user, resume, model: modelFor(premium), signal: controller.signal });
+      } catch (e) {
+        if (!resume) throw e;
+        // a bad/unreadable PDF shouldn't cost the student their AI matches
+        const plain = buildMatchPrompt(profile, aiCandidates, false);
+        text = await callClaude({ apiKey, system: plain.system, user: plain.user, model: modelFor(premium), signal: controller.signal });
+      }
       const matches = parseMatchResponse(text, aiCandidates);
       clearTimeout(timer);
       return res.status(200).json({ matches, mode: 'ai', tier });

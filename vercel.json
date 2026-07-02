@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
-    "api/match.js": { "maxDuration": 30 },
+    "api/match.js": { "maxDuration": 90 },
     "api/create-checkout.js": { "maxDuration": 15 },
     "api/verify-unlock.js": { "maxDuration": 15 },
     "api/account-token.js": { "maxDuration": 10 },

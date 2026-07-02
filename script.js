@@ -177,17 +177,22 @@ if (matchFormEl) matchFormEl.addEventListener('submit', async function (e) {
   document.getElementById('resultsHeading').textContent = 'Finding your matches…';
   document.getElementById('resultsSubheading').textContent = 'Analyzing your profile against real internships.';
   document.getElementById('matchCards').innerHTML =
-    '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray-500);font-weight:600">Scoring internships for you…</div>';
+    `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray-500);font-weight:600">${resumeFile ? 'Reading your resume and scoring internships… this can take up to a minute.' : 'Scoring internships for you…'}</div>`;
   section.classList.remove('hidden');
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   let matches = [];
   try {
+    const resumeData = await readResumeBase64();
     const resp = await fetch('/api/match', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       // Send the signed unlock token (if any) so Premium accounts get the higher-quality model.
-      body: JSON.stringify({ profile: user, token: localStorage.getItem('inn_unlock') || undefined }),
+      body: JSON.stringify({
+        profile: user,
+        token: localStorage.getItem('inn_unlock') || undefined,
+        resume: resumeData ? { media_type: 'application/pdf', data: resumeData } : undefined,
+      }),
     });
     const data = await resp.json();
     matches = data.matches || [];
@@ -571,15 +576,41 @@ function closeMobileMenu() {
 }
 
 /* ====================================================
-   FILE UPLOAD
+   FILE UPLOAD — the resume really is read by the AI (PDF, <= 3 MB)
    ==================================================== */
+let resumeFile = null;
+
 function handleFileUpload(input) {
   if (!input.files || !input.files[0]) return;
-  const fname = input.files[0].name;
-  document.getElementById('uploadLabel').textContent = `${fname} uploaded`;
+  const f = input.files[0];
+  const label = document.getElementById('uploadLabel');
   const zone = document.getElementById('uploadZone');
+  if (f.type !== 'application/pdf') {
+    resumeFile = null;
+    label.textContent = 'PDF only, please. Matching will run without a resume.';
+    zone.style.borderColor = '#d97706'; zone.style.background = '#fffbeb';
+    return;
+  }
+  if (f.size > 3 * 1024 * 1024) {
+    resumeFile = null;
+    label.textContent = 'That PDF is over 3 MB. Try exporting a smaller one.';
+    zone.style.borderColor = '#d97706'; zone.style.background = '#fffbeb';
+    return;
+  }
+  resumeFile = f;
+  label.textContent = `${f.name} attached. The AI will read it.`;
   zone.style.borderColor = '#16a34a';
   zone.style.background = '#f0fdf4';
+}
+
+function readResumeBase64() {
+  return new Promise((resolve) => {
+    if (!resumeFile) return resolve(null);
+    const r = new FileReader();
+    r.onload = () => { const s = String(r.result); resolve(s.slice(s.indexOf(',') + 1)); };
+    r.onerror = () => resolve(null);
+    r.readAsDataURL(resumeFile);
+  });
 }
 
 /* ====================================================
