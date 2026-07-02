@@ -1592,5 +1592,77 @@
       "name": "PNC",
       "industry_hint": "Finance"
     }
+  ],
+  "smartrecruiters": [
+    {
+      "slug": "Visa",
+      "name": "Visa",
+      "industry_hint": "Finance"
+    },
+    {
+      "slug": "BoschGroup",
+      "name": "Bosch",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "IKEA",
+      "name": "IKEA",
+      "industry_hint": "Marketing"
+    },
+    {
+      "slug": "McDonaldsCorporation",
+      "name": "McDonald's",
+      "industry_hint": "Marketing"
+    },
+    {
+      "slug": "Ubisoft2",
+      "name": "Ubisoft",
+      "industry_hint": "Media & Entertainment"
+    },
+    {
+      "slug": "LVMH",
+      "name": "LVMH",
+      "industry_hint": "Marketing"
+    },
+    {
+      "slug": "Sephora",
+      "name": "Sephora",
+      "industry_hint": "Marketing"
+    },
+    {
+      "slug": "PublicisGroupe",
+      "name": "Publicis Groupe",
+      "industry_hint": "Marketing"
+    },
+    {
+      "slug": "Colliers",
+      "name": "Colliers",
+      "industry_hint": "Real Estate"
+    },
+    {
+      "slug": "AvisonYoung",
+      "name": "Avison Young",
+      "industry_hint": "Real Estate"
+    },
+    {
+      "slug": "Equinox",
+      "name": "Equinox",
+      "industry_hint": "Sports Business"
+    },
+    {
+      "slug": "Gallagher",
+      "name": "Gallagher",
+      "industry_hint": "Consulting"
+    },
+    {
+      "slug": "ServiceNow",
+      "name": "ServiceNow",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "Experian",
+      "name": "Experian",
+      "industry_hint": "Finance"
+    }
   ]
 }

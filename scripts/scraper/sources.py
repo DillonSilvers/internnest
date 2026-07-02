@@ -106,10 +106,32 @@ def fetch_ashby(c):
     return out
 
 
-WD_SEARCHES = ['intern', 'co-op', 'summer analyst']  # workday search is keyword-based
+def fetch_smartrecruiters(c, page=100, cap=500):
+    """SmartRecruiters public postings API (no auth). Entry needs: slug (company
+    identifier as it appears in jobs.smartrecruiters.com URLs, case-sensitive)."""
+    slug = c['slug']
+    out, offset = [], 0
+    while offset < cap:
+        data = http_get_json(
+            f'https://api.smartrecruiters.com/v1/companies/{slug}/postings?limit={page}&offset={offset}')
+        items = data.get('content') or []
+        for j in items:
+            loc = j.get('location') or {}
+            city = ', '.join(x for x in (loc.get('city'), loc.get('region')) if x) or loc.get('country', '')
+            out.append(_posting(c['name'], j.get('name'), city,
+                                f"https://jobs.smartrecruiters.com/{slug}/{j.get('id')}",
+                                industry_hint=c.get('industry_hint', ''),
+                                source=f'smartrecruiters:{slug}'))
+        offset += page
+        if not items or offset >= int(data.get('totalFound', 0)):
+            break
+    return out
 
 
-def fetch_workday(c, page=20, cap=200):
+WD_SEARCHES = ['intern', 'co-op', 'summer analyst', 'student']  # workday search is keyword-based
+
+
+def fetch_workday(c, page=20, cap=400):
     """Workday tenants expose the same JSON endpoint their own career sites use.
     Entry needs: tenant, host (wd1/wd5/...), site (the board name in the careers URL)."""
     tenant, host, site = c['tenant'], c['host'], c['site']
@@ -211,4 +233,5 @@ def fetch_workday_jd(url):
 
 
 ATS_FETCHERS = {'greenhouse': fetch_greenhouse, 'lever': fetch_lever,
-                'ashby': fetch_ashby, 'workday': fetch_workday}
+                'ashby': fetch_ashby, 'workday': fetch_workday,
+                'smartrecruiters': fetch_smartrecruiters}

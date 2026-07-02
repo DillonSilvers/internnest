@@ -29,8 +29,9 @@ SITE_JSON = ROOT / 'internships.json'
 CANDIDATES = HERE / 'candidates.json'
 COMPANIES = HERE / 'companies.json'
 
-# Interns by any name: banks say "Summer Analyst", engineering/healthcare say "Co-op".
-INTERN_RE = re.compile(r'\bintern(ship)?s?\b|\bco-?op\b|\bsummer (analyst|associate)s?\b', re.I)
+# Interns by any name: banks say "Summer Analyst", engineering/healthcare say "Co-op",
+# Canadian/European corps say "Summer Student".
+INTERN_RE = re.compile(r'\bintern(ship)?s?\b|\bco-?op\b|\bsummer (analyst|associate|student)s?\b', re.I)
 
 
 def norm_key(company, role):
@@ -127,7 +128,7 @@ def selftest():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--sources', default='simplify,greenhouse,lever,ashby,workday')
+    ap.add_argument('--sources', default='simplify,greenhouse,lever,ashby,workday,smartrecruiters')
     ap.add_argument('--max-per-source', type=int, default=400)
     ap.add_argument('--no-ai', action='store_true')
     ap.add_argument('--no-verify', action='store_true')
