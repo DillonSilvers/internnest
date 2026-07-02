@@ -36,7 +36,8 @@ module.exports = async (req, res) => {
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (apiKey) {
-    const aiCandidates = candidates.slice(0, 8);
+    // a thin form + resume gets a wider slate: the resume, not the form, must pick the winners
+    const aiCandidates = candidates.slice(0, resume && !profile.skills ? 12 : 8);
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 60000);
     try {

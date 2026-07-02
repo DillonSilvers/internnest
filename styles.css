@@ -1160,6 +1160,10 @@ body::before {
 .tag, .col-badge { font-family: var(--mono); font-weight: 600; }
 .col-badge { background: rgba(91,75,255,.12); color: var(--glass-accent); border-radius: 999px; }
 
+/* resume mode: only Dream Industry keeps its required mark */
+.resume-mode .form-grid .req { display: none; }
+.resume-mode label[for="industry"] .req { display: inline; }
+
 /* launch-price anchor */
 .plan-strike { font-size: 20px; font-weight: 700; color: var(--gray-500); text-decoration: line-through; margin-right: 8px; }
 .launch-chip {

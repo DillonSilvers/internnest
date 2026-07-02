@@ -580,6 +580,18 @@ function closeMobileMenu() {
    ==================================================== */
 let resumeFile = null;
 
+/* With a resume attached, the resume carries the profile: every field except
+   Dream Industry (which drives the shortlist) becomes optional. */
+function setResumeMode(on) {
+  const form = document.getElementById('matchForm');
+  if (!form) return;
+  form.classList.toggle('resume-mode', on);
+  ['name', 'email', 'school', 'major', 'year', 'role', 'location', 'skills'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.required = !on;
+  });
+}
+
 function handleFileUpload(input) {
   if (!input.files || !input.files[0]) return;
   const f = input.files[0];
@@ -587,20 +599,24 @@ function handleFileUpload(input) {
   const zone = document.getElementById('uploadZone');
   if (f.type !== 'application/pdf') {
     resumeFile = null;
+    setResumeMode(false);
     label.textContent = 'PDF only, please. Matching will run without a resume.';
     zone.style.borderColor = '#d97706'; zone.style.background = '#fffbeb';
     return;
   }
   if (f.size > 3 * 1024 * 1024) {
     resumeFile = null;
+    setResumeMode(false);
     label.textContent = 'That PDF is over 3 MB. Try exporting a smaller one.';
     zone.style.borderColor = '#d97706'; zone.style.background = '#fffbeb';
     return;
   }
   resumeFile = f;
-  label.textContent = `${f.name} attached. The AI will read it.`;
+  setResumeMode(true);
+  label.textContent = `${f.name} attached. The AI will read it, so only Dream Industry is still required.`;
   zone.style.borderColor = '#16a34a';
   zone.style.background = '#f0fdf4';
+  showToast('Resume attached. The other fields are now optional.');
 }
 
 function readResumeBase64() {
