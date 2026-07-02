@@ -42593,5 +42593,1008 @@
     "application_url": "https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/Netherlands---Amsterdam/Salesforce-Internships---Amsterdam--September-Start-date-_JR332167-1",
     "source_url": "https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/Netherlands---Amsterdam/Salesforce-Internships---Amsterdam--September-Start-date-_JR332167-1",
     "term": "Fall 2026"
+  },
+  {
+    "company": "Anima",
+    "role": "Intern/New Grad Software Engineer",
+    "industry": "Technology",
+    "location": "Remote",
+    "work_type": "Remote",
+    "short_description": "Software engineering internship or new graduate role at Anima.",
+    "required_skills": [
+      "Java",
+      "Python",
+      "Software Engineering",
+      "Problem Solving"
+    ],
+    "application_url": "https://jobs.ashbyhq.com/anima/86ddfd6e-6aee-4ded-b9d0-440608763fb0",
+    "source_url": "https://jobs.ashbyhq.com/anima/86ddfd6e-6aee-4ded-b9d0-440608763fb0",
+    "term": "Summer 2026"
+  },
+  {
+    "company": "ATCO",
+    "role": "Customer Connections Co-op",
+    "industry": "Technology",
+    "location": "Edmonton, AB, Canada",
+    "work_type": "In-Person",
+    "short_description": "Co-op program focused on customer connections and relationships.",
+    "required_skills": [
+      "Communication",
+      "Problem Solving",
+      "Customer Service"
+    ],
+    "application_url": "https://eezy.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/20129",
+    "source_url": "https://eezy.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/20129",
+    "term": "Fall 2026"
+  },
+  {
+    "company": "ATCO",
+    "role": "Forestry Planning Co-op",
+    "industry": "Real Estate",
+    "location": "Edmonton, AB, Canada",
+    "work_type": "In-Person",
+    "short_description": "Co-op program in forestry planning and resource management.",
+    "required_skills": [
+      "GIS",
+      "Planning",
+      "Data Analysis"
+    ],
+    "application_url": "https://eezy.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/20124",
+    "source_url": "https://eezy.fa.ca2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/20124",
+    "term": "Fall 2026"
+  },
+  {
+    "company": "Royal Bank of Canada",
+    "role": "Relationship Manager Business Markets Intern",
+    "industry": "Finance",
+    "location": "Halifax, NS, Canada",
+    "work_type": "In-Person",
+    "short_description": "Banking internship focused on business markets relationship management.",
+    "required_skills": [
+      "Relationship Management",
+      "Sales",
+      "Communication"
+    ],
+    "application_url": "https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/BRIDGEWATER-Nova-Scotia-Canada/Relationship-Manager-Business-Markets-Intern_R-0000178540-1",
+    "source_url": "https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/BRIDGEWATER-Nova-Scotia-Canada/Relationship-Manager-Business-Markets-Intern_R-0000178540-1",
+    "term": "Fall 2026"
+  },
+  {
+    "company": "Royal Bank of Canada",
+    "role": "Relationship Manager Commercial Markets Intern",
+    "industry": "Finance",
+    "location": "Madawaska, NB, Canada",
+    "work_type": "In-Person",
+    "short_description": "Banking internship in commercial markets relationship management.",
+    "required_skills": [
+      "Relationship Management",
+      "Sales",
+      "Communication"
+    ],
+    "application_url": "https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/GRAND-FALLS-New-Brunswick-Canada/Relationship-Manager-Commercial-Markets-Intern_R-0000178547",
+    "source_url": "https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/GRAND-FALLS-New-Brunswick-Canada/Relationship-Manager-Commercial-Markets-Intern_R-0000178547",
+    "term": "Summer 2026"
+  },
+  {
+    "company": "Royal Bank of Canada",
+    "role": "Relationship Manager Commercial Markets Intern - Agriculture",
+    "industry": "Finance",
+    "location": "Oakland, ON, Canada",
+    "work_type": "In-Person",
+    "short_description": "Banking internship in commercial agricultural markets.",
+    "required_skills": [
+      "Relationship Management",
+      "Agriculture Knowledge",
+      "Sales"
+    ],
+    "application_url": "https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/BRANTFORD-Ontario-Canada/Relationship-Manager-Commercial-Markets-Intern--Agriculture_R-0000178814",
+    "source_url": "https://rbc.wd3.myworkdayjobs.com/rbcglobal1/job/BRANTFORD-Ontario-Canada/Relationship-Manager-Commercial-Markets-Intern--Agriculture_R-0000178814",
+    "term": "Summer 2026"
+  },
+  {
+    "company": "ETHGlobal",
+    "role": "Software Engineering Intern",
+    "industry": "Technology",
+    "location": "Remote",
+    "work_type": "Remote",
+    "short_description": "Software engineering internship with decentralized finance platform.",
+    "required_skills": [
+      "Software Engineering",
+      "JavaScript",
+      "Web Development"
+    ],
+    "application_url": "https://jobs.ashbyhq.com/ethglobal/4522a1d6-956c-4434-a6db-9365f19c60fb",
+    "source_url": "https://jobs.ashbyhq.com/ethglobal/4522a1d6-956c-4434-a6db-9365f19c60fb",
+    "term": "Rolling"
+  },
+  {
+    "company": "Pika",
+    "role": "Research Intern (BS/MS/PhD)",
+    "industry": "Technology",
+    "location": "Palo Alto, CA",
+    "work_type": "In-Person",
+    "short_description": "Research internship for BS/MS students in machine learning and AI.",
+    "required_skills": [
+      "Machine Learning",
+      "Research",
+      "Python",
+      "Communication"
+    ],
+    "application_url": "https://jobs.ashbyhq.com/pika/6c9ba89d-91f3-4cf1-a318-70783773323a",
+    "source_url": "https://jobs.ashbyhq.com/pika/6c9ba89d-91f3-4cf1-a318-70783773323a",
+    "term": "Rolling"
+  },
+  {
+    "company": "Vendelux",
+    "role": "Tech Internship",
+    "industry": "Technology",
+    "location": "New York, NY",
+    "work_type": "In-Person",
+    "short_description": "Technology internship role for college students in New York.",
+    "required_skills": [
+      "Programming",
+      "Problem Solving",
+      "Communication",
+      "Technical Skills"
+    ],
+    "application_url": "https://jobs.ashbyhq.com/vendelux/8ec77cd6-e731-44be-bb58-5ef4fb0314de",
+    "source_url": "https://jobs.ashbyhq.com/vendelux/8ec77cd6-e731-44be-bb58-5ef4fb0314de",
+    "term": "Rolling"
+  },
+  {
+    "company": "ABB",
+    "role": "HR Intern",
+    "industry": "Technology",
+    "location": "Shanghai, China",
+    "work_type": "In-Person",
+    "short_description": "Human resources internship at ABB in Shanghai.",
+    "required_skills": [
+      "HR Management",
+      "Communication",
+      "Organization",
+      "Business"
+    ],
+    "application_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Shanghai-Shanghai-China/HR-Intern_JR00038698",
+    "source_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Shanghai-Shanghai-China/HR-Intern_JR00038698",
+    "term": "Rolling"
+  },
+  {
+    "company": "ABB",
+    "role": "Intern \u2013 Statutory Compliance Services",
+    "industry": "Technology",
+    "location": "Lodz, Poland",
+    "work_type": "In-Person",
+    "short_description": "Support statutory compliance and regulatory requirements for technology operations.",
+    "required_skills": [
+      "Compliance",
+      "Legal Research",
+      "Documentation",
+      "Communication"
+    ],
+    "application_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Lodz-Lodz-Poland/Intern---Statutory-Compliance-Services_JR00034691",
+    "source_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Lodz-Lodz-Poland/Intern---Statutory-Compliance-Services_JR00034691",
+    "term": "Rolling"
+  },
+  {
+    "company": "ABB",
+    "role": "Internship - Material Planner",
+    "industry": "Technology",
+    "location": "Dalmine, Italy",
+    "work_type": "In-Person",
+    "short_description": "Plan and coordinate material logistics and supply chain operations.",
+    "required_skills": [
+      "Supply Chain",
+      "Planning",
+      "Excel",
+      "Data Analysis"
+    ],
+    "application_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Dalmine-Bergamo-Italy/Internship---Material-Planner_JR00029768",
+    "source_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Dalmine-Bergamo-Italy/Internship---Material-Planner_JR00029768",
+    "term": "Rolling"
+  },
+  {
+    "company": "ABB",
+    "role": "Student Internship - Purchase and Controlling Department",
+    "industry": "Technology",
+    "location": "Krakow, Poland",
+    "work_type": "In-Person",
+    "short_description": "Support purchasing and financial controlling departmental operations.",
+    "required_skills": [
+      "Procurement",
+      "Cost Analysis",
+      "Excel",
+      "Vendor Management"
+    ],
+    "application_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Krakow-Lesser-Poland-Poland/Student-Internship---Purchase-and-Controlling-Department_JR00039723",
+    "source_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Krakow-Lesser-Poland-Poland/Student-Internship---Purchase-and-Controlling-Department_JR00039723",
+    "term": "Rolling"
+  },
+  {
+    "company": "ABB",
+    "role": "Pension Management Internship",
+    "industry": "Finance",
+    "location": "Rotterdam, Netherlands",
+    "work_type": "In-Person",
+    "short_description": "Manage pension program administration and financial processes.",
+    "required_skills": [
+      "Pension Administration",
+      "Financial Analysis",
+      "Excel",
+      "Compliance"
+    ],
+    "application_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Rotterdam-South-Holland-Netherlands/Pension-Management-Internship_JR00039363-1",
+    "source_url": "https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/Rotterdam-South-Holland-Netherlands/Pension-Management-Internship_JR00039363-1",
+    "term": "Rolling"
+  },
+  {
+    "company": "ASML",
+    "role": "Internship - CRE EHS Intern (1yr contract) - Tainan",
+    "industry": "Technology",
+    "location": "Tainan, Taiwan",
+    "work_type": "In-Person",
+    "short_description": "Support corporate environmental, health, and safety program implementation.",
+    "required_skills": [
+      "EHS Compliance",
+      "Safety Management",
+      "Documentation",
+      "Risk Assessment"
+    ],
+    "application_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Tainan-Taiwan/Internship---CRE-EHS-Intern--1yr-contract----Tainan_J-00336350",
+    "source_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Tainan-Taiwan/Internship---CRE-EHS-Intern--1yr-contract----Tainan_J-00336350",
+    "term": "Rolling"
+  },
+  {
+    "company": "ASML",
+    "role": "Internship - HR Talent & Learning Intern \"one-year contract\" - Tainan",
+    "industry": "Technology",
+    "location": "Tainan, Taiwan",
+    "work_type": "In-Person",
+    "short_description": "Support talent development and organizational learning initiatives.",
+    "required_skills": [
+      "HR Administration",
+      "Learning Development",
+      "Communication",
+      "Project Management"
+    ],
+    "application_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Tainan-Taiwan/Internship---HR-Talent---Learning-Intern--one-year-contract----Tainan_J-00340789",
+    "source_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Tainan-Taiwan/Internship---HR-Talent---Learning-Intern--one-year-contract----Tainan_J-00340789",
+    "term": "Rolling"
+  },
+  {
+    "company": "ASML",
+    "role": "Internship - DUV CS team (ROT) - Tainan",
+    "industry": "Technology",
+    "location": "Tainan, Taiwan",
+    "work_type": "In-Person",
+    "short_description": "Provide technical customer support for deep ultraviolet lithography systems.",
+    "required_skills": [
+      "Customer Support",
+      "Technical Troubleshooting",
+      "Documentation",
+      "Communication"
+    ],
+    "application_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Tainan-Taiwan/Internship---DUV-CS-team--ROT----Tainan_J-00342543",
+    "source_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Tainan-Taiwan/Internship---DUV-CS-team--ROT----Tainan_J-00342543",
+    "term": "Rolling"
+  },
+  {
+    "company": "ASML",
+    "role": "Internship - DUV CS team (TSMC) - Tainan",
+    "industry": "Technology",
+    "location": "Tainan, Taiwan",
+    "work_type": "In-Person",
+    "short_description": "Deliver customer support services for semiconductor equipment operations.",
+    "required_skills": [
+      "Customer Support",
+      "Technical Troubleshooting",
+      "Documentation",
+      "Communication"
+    ],
+    "application_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Tainan-Taiwan/Internship---DUV-CS-team--TSMC----Tainan_J-00342626",
+    "source_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Tainan-Taiwan/Internship---DUV-CS-team--TSMC----Tainan_J-00342626",
+    "term": "Rolling"
+  },
+  {
+    "company": "ASML",
+    "role": "TA Intern",
+    "industry": "Technology",
+    "location": "Shanghai, China",
+    "work_type": "In-Person",
+    "short_description": "Provide technical assistance and testing support for engineering operations.",
+    "required_skills": [
+      "Technical Analysis",
+      "Testing",
+      "Problem-Solving",
+      "Communication"
+    ],
+    "application_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Shanghai-China/TA-Intern_J-00341384",
+    "source_url": "https://asml.wd3.myworkdayjobs.com/en-US/asmlext1/job/Shanghai-China/TA-Intern_J-00341384",
+    "term": "Rolling"
+  },
+  {
+    "company": "BorgWarner",
+    "role": "Validation Intern (Year-Round)",
+    "industry": "Technology",
+    "location": "Kokomo, IN",
+    "work_type": "In-Person",
+    "short_description": "Validate and test automotive component designs and manufacturing processes.",
+    "required_skills": [
+      "Testing",
+      "Quality Assurance",
+      "Problem-Solving",
+      "Documentation"
+    ],
+    "application_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Kokomo-Technical-Center---Indiana---USA/Validation-Intern--Year-Round-_R2026-1960",
+    "source_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Kokomo-Technical-Center---Indiana---USA/Validation-Intern--Year-Round-_R2026-1960",
+    "term": "Rolling"
+  },
+  {
+    "company": "BorgWarner",
+    "role": "GSM Intern (Year-Round)",
+    "industry": "Technology",
+    "location": "Auburn Hills, MI",
+    "work_type": "In-Person",
+    "short_description": "Support global supply management and quality assurance programs.",
+    "required_skills": [
+      "Quality Management",
+      "Process Improvement",
+      "Data Analysis",
+      "Excel"
+    ],
+    "application_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Auburn-Hills-PTC---USA/GSM-Intern--Year-Round-_R2026-2536",
+    "source_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Auburn-Hills-PTC---USA/GSM-Intern--Year-Round-_R2026-2536",
+    "term": "Rolling"
+  },
+  {
+    "company": "BorgWarner",
+    "role": "Materials Coordinator Intern (Year-Round)",
+    "industry": "Technology",
+    "location": "Kokomo, IN",
+    "work_type": "In-Person",
+    "short_description": "Coordinate material inventory and procurement operations for manufacturing.",
+    "required_skills": [
+      "Inventory Management",
+      "Supply Chain",
+      "Excel",
+      "Organization"
+    ],
+    "application_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Kokomo-Technical-Center---Indiana---USA/Materials-Coordinator-Intern_R2026-1862-1",
+    "source_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Kokomo-Technical-Center---Indiana---USA/Materials-Coordinator-Intern_R2026-1862-1",
+    "term": "Rolling"
+  },
+  {
+    "company": "BorgWarner",
+    "role": "Vendor Planner Professional Internship (M/F/D)",
+    "industry": "Technology",
+    "location": "Viana do Castelo, Portugal",
+    "work_type": "In-Person",
+    "short_description": "Plan and optimize vendor relationships and procurement strategies.",
+    "required_skills": [
+      "Vendor Management",
+      "Supply Chain",
+      "Negotiation",
+      "Excel"
+    ],
+    "application_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Viana-do-Castelo-II---Portugal/Vendor-Planner-Professional-Internship--M-F-D-_R2025-4896",
+    "source_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Viana-do-Castelo-II---Portugal/Vendor-Planner-Professional-Internship--M-F-D-_R2025-4896",
+    "term": "Rolling"
+  },
+  {
+    "company": "BorgWarner",
+    "role": "Manufacturing Operations Professional Internship (m/f/d)",
+    "industry": "Technology",
+    "location": "Viana do Castelo, Portugal",
+    "work_type": "In-Person",
+    "short_description": "Support manufacturing operations planning and efficiency optimization.",
+    "required_skills": [
+      "Operations Management",
+      "Process Improvement",
+      "Problem-Solving",
+      "Communication"
+    ],
+    "application_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Viana-do-Castelo-I---Portugal/Manufacturing-Operations-Professional-Internship--m-f-d-_R2026-1081",
+    "source_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Viana-do-Castelo-I---Portugal/Manufacturing-Operations-Professional-Internship--m-f-d-_R2026-1081",
+    "term": "Rolling"
+  },
+  {
+    "company": "BorgWarner",
+    "role": "Professional Internship Purchasing Support (m/f/d)",
+    "industry": "Technology",
+    "location": "Viana do Castelo, Portugal",
+    "work_type": "In-Person",
+    "short_description": "Support purchasing operations and supply chain management for technology manufacturing.",
+    "required_skills": [
+      "Procurement",
+      "Supply Chain",
+      "Data Analysis",
+      "Communication"
+    ],
+    "application_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Viana-do-Castelo-I---Portugal/Professional-Internship-Purchasing-Support--m-f-d-_R2026-2555",
+    "source_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Viana-do-Castelo-I---Portugal/Professional-Internship-Purchasing-Support--m-f-d-_R2026-2555",
+    "term": "Rolling"
+  },
+  {
+    "company": "BorgWarner",
+    "role": "Site Software Applications Engineer (Long Term Quality Intern)",
+    "industry": "Technology",
+    "location": "Izmir, Turkey",
+    "work_type": "In-Person",
+    "short_description": "Long-term quality engineering internship supporting site software applications development.",
+    "required_skills": [
+      "Software Development",
+      "Quality Assurance",
+      "Testing",
+      "Problem-Solving"
+    ],
+    "application_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Izmir---Trkiye/Site-Software-Applications-Engineer--Long-Term-Quality-Intern-_R2026-2350",
+    "source_url": "https://borgwarner.wd5.myworkdayjobs.com/en-US/BorgWarner_Careers/job/Izmir---Trkiye/Site-Software-Applications-Engineer--Long-Term-Quality-Intern-_R2026-2350",
+    "term": "Rolling"
+  },
+  {
+    "company": "Cadence",
+    "role": "Intern SSG",
+    "industry": "Technology",
+    "location": "Cork, Ireland",
+    "work_type": "In-Person",
+    "short_description": "Systems software group internship at semiconductor design company Cadence.",
+    "required_skills": [
+      "Software Development",
+      "Systems Engineering",
+      "C/C++",
+      "Technical Writing"
+    ],
+    "application_url": "https://cadence.wd1.myworkdayjobs.com/en-US/External_Careers/job/CORK-01/Intern-SSG_R52780",
+    "source_url": "https://cadence.wd1.myworkdayjobs.com/en-US/External_Careers/job/CORK-01/Intern-SSG_R52780",
+    "term": "Rolling"
+  },
+  {
+    "company": "Ciena",
+    "role": "Braunschweig New Grad and Intern Applications",
+    "industry": "Technology",
+    "location": "Braunschweig, Germany",
+    "work_type": "In-Person",
+    "short_description": "New graduate and undergraduate internship applications for software and engineering roles.",
+    "required_skills": [
+      "Software Development",
+      "Engineering",
+      "Problem-Solving",
+      "Communication"
+    ],
+    "application_url": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Germany--Braunschweig/Braunschweig---Bonding-2026-Applications_R031174",
+    "source_url": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Germany--Braunschweig/Braunschweig---Bonding-2026-Applications_R031174",
+    "term": "Rolling"
+  },
+  {
+    "company": "Hendrick Motorsports",
+    "role": "12 Month - Accounting Intern",
+    "industry": "Sports Business",
+    "location": "Hendrick Technical Solutions, NC",
+    "work_type": "In-Person",
+    "short_description": "12-month accounting internship with Hendrick Motorsports technical solutions.",
+    "required_skills": [
+      "Accounting",
+      "Excel",
+      "Financial Analysis",
+      "Attention to Detail"
+    ],
+    "application_url": "https://hendrick.wd5.myworkdayjobs.com/en-US/HMSCareers/job/Hendrick-Technical-Solutions/XMLNAME-12-Month---Accounting-Intern_R-81393",
+    "source_url": "https://hendrick.wd5.myworkdayjobs.com/en-US/HMSCareers/job/Hendrick-Technical-Solutions/XMLNAME-12-Month---Accounting-Intern_R-81393",
+    "term": "Rolling"
+  },
+  {
+    "company": "Synchrony Financial",
+    "role": "BLP Intern \u2013 Human Resources",
+    "industry": "Finance",
+    "location": "Stamford, CT",
+    "work_type": "Hybrid",
+    "short_description": "Human Resources internship at financial services company Synchrony Financial.",
+    "required_skills": [
+      "HR Processes",
+      "Communication",
+      "Data Entry",
+      "Excel"
+    ],
+    "application_url": "https://synchronyfinancial.wd5.myworkdayjobs.com/en-US/University/job/Stamford-Hub/BLP-Intern---Human-Resources_2601690",
+    "source_url": "https://synchronyfinancial.wd5.myworkdayjobs.com/en-US/University/job/Stamford-Hub/BLP-Intern---Human-Resources_2601690",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Business Intelligence Intern - Fall",
+    "industry": "Technology",
+    "location": "Watertown, MA",
+    "work_type": "In-Person",
+    "short_description": "Build business intelligence dashboards and reports for operations team.",
+    "required_skills": [
+      "SQL",
+      "Tableau",
+      "Data Analysis",
+      "Communication"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135497810",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135497810",
+    "term": "Fall 2026"
+  },
+  {
+    "company": "Bosch",
+    "role": "IT Intern (Automation)",
+    "industry": "Technology",
+    "location": "Taguig, Philippines",
+    "work_type": "In-Person",
+    "short_description": "IT automation internship supporting technical infrastructure and systems.",
+    "required_skills": [
+      "IT Automation",
+      "Problem Solving",
+      "Technical Documentation"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135419029",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135419029",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "[Bosch R&D - Internship] Product Development Intern",
+    "industry": "Technology",
+    "location": "Ho Chi Minh City, Vietnam",
+    "work_type": "In-Person",
+    "short_description": "R&D product development internship in engineering and innovation.",
+    "required_skills": [
+      "Product Development",
+      "Technical Analysis",
+      "Communication"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135408109",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135408109",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Paid internship - IT Business Process & Financial Management (Valuemation) f/m",
+    "industry": "Technology",
+    "location": "Warsaw, Poland",
+    "work_type": "In-Person",
+    "short_description": "Paid IT and financial management internship for business process optimization.",
+    "required_skills": [
+      "IT",
+      "Financial Management",
+      "Process Analysis"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135251819",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135251819",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Intern - WARP Product Support f/m",
+    "industry": "Technology",
+    "location": "Warsaw, Poland",
+    "work_type": "In-Person",
+    "short_description": "Product support internship for WARP platform customer assistance.",
+    "required_skills": [
+      "Product Support",
+      "Technical Troubleshooting",
+      "Communication"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135208030",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135208030",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Bosch Summer Internship Program 2026",
+    "industry": "Technology",
+    "location": "Cairo, Egypt",
+    "work_type": "In-Person",
+    "short_description": "Bosch summer internship program for technology and engineering projects.",
+    "required_skills": [
+      "Technical Skills",
+      "Problem Solving",
+      "Communication"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135190304",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135190304",
+    "term": "Summer 2026"
+  },
+  {
+    "company": "Bosch",
+    "role": "Intern, AI HVAC Research",
+    "industry": "Technology",
+    "location": "Singapore",
+    "work_type": "In-Person",
+    "short_description": "AI research internship focused on HVAC technology development.",
+    "required_skills": [
+      "AI/Machine Learning",
+      "Research",
+      "Data Analysis"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135165246",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135165246",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Intern, Mechanical Design and Process Development",
+    "industry": "Technology",
+    "location": "Singapore",
+    "work_type": "In-Person",
+    "short_description": "Mechanical design and process development internship supporting engineering.",
+    "required_skills": [
+      "Mechanical Design",
+      "CAD",
+      "Process Development"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135165379",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135165379",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Intern, AI Research",
+    "industry": "Technology",
+    "location": "Singapore",
+    "work_type": "In-Person",
+    "short_description": "AI research internship developing advanced technology solutions.",
+    "required_skills": [
+      "AI/Machine Learning",
+      "Research",
+      "Programming"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135165209",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000135165209",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Intern, Business Analyst Automotive Aftermarket Division",
+    "industry": "Technology",
+    "location": "Singapore",
+    "work_type": "In-Person",
+    "short_description": "Business analyst internship in automotive aftermarket division operations.",
+    "required_skills": [
+      "Business Analysis",
+      "Data Analysis",
+      "Communication"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134979923",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134979923",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Sales and Business Development Intern",
+    "industry": "Technology",
+    "location": "South Jakarta, Indonesia",
+    "work_type": "In-Person",
+    "short_description": "Sales and business development internship driving market growth.",
+    "required_skills": [
+      "Sales",
+      "Business Development",
+      "Communication"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134956819",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134956819",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "\u3010XC-CE/XCE-JP\u3011Internship at the XCE-JP Engineering JP",
+    "industry": "Technology",
+    "location": "Yokohama, Japan",
+    "work_type": "In-Person",
+    "short_description": "XCE engineering internship supporting international technical projects.",
+    "required_skills": [
+      "Engineering",
+      "Technical Analysis",
+      "Problem Solving"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134944301",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134944301",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Internship in Deployment of Business Excellence (Communications & Project Management)",
+    "industry": "Technology",
+    "location": "Pulau Pinang, Malaysia",
+    "work_type": "In-Person",
+    "short_description": "Deploy business excellence initiatives through communications and project management support.",
+    "required_skills": [
+      "Project Management",
+      "Communication",
+      "Business Analysis",
+      "Documentation"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134921139",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134921139",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Extracurricular Internship: Sustainability & Climate Strategy (f/m/div.)",
+    "industry": "Technology",
+    "location": "Aveiro, Portugal",
+    "work_type": "In-Person",
+    "short_description": "Support sustainability and climate strategy initiatives for a technology organization.",
+    "required_skills": [
+      "Sustainability Analysis",
+      "Climate Strategy",
+      "Research",
+      "Communication"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134844049",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134844049",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "A.I. Integration Intern",
+    "industry": "Technology",
+    "location": "Albion, IN",
+    "work_type": "In-Person",
+    "short_description": "Assist with artificial intelligence integration projects and implementation.",
+    "required_skills": [
+      "AI",
+      "Integration",
+      "Problem-Solving",
+      "Technical Knowledge"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134840254",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134840254",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Hardware Prototyping Intern \u2013 Data Center Rack",
+    "industry": "Technology",
+    "location": "Sunnyvale, CA",
+    "work_type": "In-Person",
+    "short_description": "Prototype and develop hardware solutions for data center rack systems.",
+    "required_skills": [
+      "Hardware Prototyping",
+      "Data Center Systems",
+      "CAD",
+      "Technical Skills"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134543799",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134543799",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Foreign Trade Data Analytics Intern",
+    "industry": "Technology",
+    "location": "Oak Brook, IL",
+    "work_type": "In-Person",
+    "short_description": "Analyze foreign trade data and support analytics initiatives.",
+    "required_skills": [
+      "Data Analytics",
+      "Foreign Trade",
+      "Excel",
+      "SQL"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134542009",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134542009",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Internship IT Development - Digital Services in Mobility After-Sales",
+    "industry": "Technology",
+    "location": "Stuttgart, Germany",
+    "work_type": "In-Person",
+    "short_description": "Develop IT solutions for digital services in automotive after-sales.",
+    "required_skills": [
+      "IT Development",
+      "Digital Services",
+      "Mobility Systems",
+      "Programming"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134463949",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134463949",
+    "term": "Rolling"
+  },
+  {
+    "company": "Bosch",
+    "role": "Internship Software Development \u2013 AI Agents & LLMs",
+    "industry": "Technology",
+    "location": "M\u00fcnchen, Germany",
+    "work_type": "In-Person",
+    "short_description": "Develop software solutions for AI agents and large language models.",
+    "required_skills": [
+      "Software Development",
+      "AI",
+      "LLMs",
+      "Python"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134461010",
+    "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000134461010",
+    "term": "Rolling"
+  },
+  {
+    "company": "Ubisoft",
+    "role": "Video Editing Intern",
+    "industry": "Media & Entertainment",
+    "location": "Singapore",
+    "work_type": "In-Person",
+    "short_description": "Edit and produce video content for media and entertainment projects.",
+    "required_skills": [
+      "Video Editing",
+      "Adobe Creative Suite",
+      "Visual Communication",
+      "Creativity"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Ubisoft2/744000135164928",
+    "source_url": "https://jobs.smartrecruiters.com/Ubisoft2/744000135164928",
+    "term": "Rolling"
+  },
+  {
+    "company": "Ubisoft",
+    "role": "[Internship] - R&D Developer Assistant - Neural Rendering for Real-Time Graphics (F/M/NB)",
+    "industry": "Media & Entertainment",
+    "location": "Bordeaux, France",
+    "work_type": "In-Person",
+    "short_description": "Develop neural rendering technology for real-time graphics in games.",
+    "required_skills": [
+      "R&D Development",
+      "Neural Rendering",
+      "Graphics Programming",
+      "C++"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Ubisoft2/744000127422705",
+    "source_url": "https://jobs.smartrecruiters.com/Ubisoft2/744000127422705",
+    "term": "Rolling"
+  },
+  {
+    "company": "Colliers",
+    "role": "Colliers Urban Planning | Internship VIC 2027",
+    "industry": "Real Estate",
+    "location": "Melbourne, VIC",
+    "work_type": "In-Person",
+    "short_description": "Support urban planning initiatives and real estate market analysis.",
+    "required_skills": [
+      "Urban Planning",
+      "Analysis",
+      "Communication",
+      "Research"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Colliers/744000135407419",
+    "source_url": "https://jobs.smartrecruiters.com/Colliers/744000135407419",
+    "term": "2027"
+  },
+  {
+    "company": "Colliers",
+    "role": "Colliers Urban Planning | Internship QLD 2027",
+    "industry": "Real Estate",
+    "location": "Brisbane, QLD",
+    "work_type": "In-Person",
+    "short_description": "Support urban planning initiatives and real estate market analysis.",
+    "required_skills": [
+      "Urban Planning",
+      "Analysis",
+      "Communication",
+      "Research"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Colliers/744000135184750",
+    "source_url": "https://jobs.smartrecruiters.com/Colliers/744000135184750",
+    "term": "2027"
+  },
+  {
+    "company": "Colliers",
+    "role": "Colliers Urban Planning | Internship NSW 2027",
+    "industry": "Real Estate",
+    "location": "Sydney, NSW",
+    "work_type": "In-Person",
+    "short_description": "Support urban planning initiatives and real estate market analysis.",
+    "required_skills": [
+      "Urban Planning",
+      "Analysis",
+      "Communication",
+      "Research"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Colliers/744000135183011",
+    "source_url": "https://jobs.smartrecruiters.com/Colliers/744000135183011",
+    "term": "2027"
+  },
+  {
+    "company": "ServiceNow",
+    "role": "Product Success Analyst Intern",
+    "industry": "Technology",
+    "location": "Sydney, NSW",
+    "work_type": "In-Person",
+    "short_description": "Product Success Analyst intern role at ServiceNow focusing on customer success.",
+    "required_skills": [
+      "SQL",
+      "Data Analysis",
+      "Communication",
+      "Problem-Solving"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/ServiceNow/744000134688699",
+    "source_url": "https://jobs.smartrecruiters.com/ServiceNow/744000134688699",
+    "term": "Rolling"
+  },
+  {
+    "company": "ServiceNow",
+    "role": "Intern - Marketing Associate",
+    "industry": "Technology",
+    "location": "Sydney, Australia",
+    "work_type": "In-Person",
+    "short_description": "Marketing associate role supporting ServiceNow's marketing initiatives and campaigns.",
+    "required_skills": [
+      "Marketing",
+      "Communication",
+      "Social Media",
+      "Analytics"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/ServiceNow/744000130359664",
+    "source_url": "https://jobs.smartrecruiters.com/ServiceNow/744000130359664",
+    "term": "Rolling"
+  },
+  {
+    "company": "Experian",
+    "role": "Automation Intern",
+    "industry": "Finance",
+    "location": "Cyberjaya, Selangor",
+    "work_type": "In-Person",
+    "short_description": "Automation internship focused on developing and testing automated processes and systems.",
+    "required_skills": [
+      "Automation",
+      "Python",
+      "Problem-Solving",
+      "Technical Writing"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Experian/744000134161590",
+    "source_url": "https://jobs.smartrecruiters.com/Experian/744000134161590",
+    "term": "Rolling"
+  },
+  {
+    "company": "Experian",
+    "role": "IT Internship  (AI)",
+    "industry": "Finance",
+    "location": "Cyberjaya, Selangor",
+    "work_type": "In-Person",
+    "short_description": "IT internship specializing in artificial intelligence projects and implementations.",
+    "required_skills": [
+      "AI",
+      "Python",
+      "Machine Learning",
+      "Data Analysis"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Experian/744000133412799",
+    "source_url": "https://jobs.smartrecruiters.com/Experian/744000133412799",
+    "term": "Rolling"
+  },
+  {
+    "company": "Experian",
+    "role": "Vulnerability Governance Intern (Cybersecurity)",
+    "industry": "Finance",
+    "location": "Cyberjaya, Selangor",
+    "work_type": "In-Person",
+    "short_description": "Cybersecurity internship managing vulnerability governance and risk assessment processes.",
+    "required_skills": [
+      "Cybersecurity",
+      "Vulnerability Assessment",
+      "Risk Analysis",
+      "Documentation"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Experian/744000132346269",
+    "source_url": "https://jobs.smartrecruiters.com/Experian/744000132346269",
+    "term": "Rolling"
+  },
+  {
+    "company": "Experian",
+    "role": "Finance Intern",
+    "industry": "Finance",
+    "location": "Sofia, Bulgaria",
+    "work_type": "In-Person",
+    "short_description": "Finance internship supporting financial analysis, reporting, and accounting functions.",
+    "required_skills": [
+      "Excel",
+      "Financial Analysis",
+      "Accounting",
+      "Communication"
+    ],
+    "application_url": "https://jobs.smartrecruiters.com/Experian/744000131105939",
+    "source_url": "https://jobs.smartrecruiters.com/Experian/744000131105939",
+    "term": "Rolling"
   }
 ]
