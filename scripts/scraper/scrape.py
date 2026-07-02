@@ -30,8 +30,9 @@ CANDIDATES = HERE / 'candidates.json'
 COMPANIES = HERE / 'companies.json'
 
 # Interns by any name: banks say "Summer Analyst", engineering/healthcare say "Co-op",
-# Canadian/European corps say "Summer Student".
-INTERN_RE = re.compile(r'\bintern(ship)?s?\b|\bco-?op\b|\bsummer (analyst|associate|student)s?\b', re.I)
+# Canadian/European corps say "Summer Student", the US government says "Student Trainee".
+INTERN_RE = re.compile(
+    r'\bintern(ship)?s?\b|\bco-?op\b|\bsummer (analyst|associate|student)s?\b|\bstudent trainee\b', re.I)
 
 
 def norm_key(company, role):
@@ -40,7 +41,11 @@ def norm_key(company, role):
 
 
 def is_internship(p):
-    return bool(INTERN_RE.search(p['role'])) and p['application_url'].startswith('http')
+    if not p['application_url'].startswith('http'):
+        return False
+    if p.get('source') == 'usajobs':
+        return True  # HiringPath=student already restricts to Pathways student positions
+    return bool(INTERN_RE.search(p['role']))
 
 
 def gather(selected, max_per_source, log=print):
@@ -54,6 +59,14 @@ def gather(selected, max_per_source, log=print):
             raw += got
         except Exception as e:
             log(f'  ! simplify failed: {e}')
+    if 'usajobs' in selected:
+        log('fetching usajobs (federal Pathways)…')
+        try:
+            got = sources.fetch_usajobs(max_items=max_per_source)
+            log(f'  usajobs: {len(got)} postings')
+            raw += got
+        except Exception as e:
+            log(f'  ! usajobs failed: {e}')
     for ats, fetch in sources.ATS_FETCHERS.items():
         if ats not in selected:
             continue
@@ -128,7 +141,7 @@ def selftest():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--sources', default='simplify,greenhouse,lever,ashby,workday,smartrecruiters')
+    ap.add_argument('--sources', default='simplify,usajobs,greenhouse,lever,ashby,workday,smartrecruiters')
     ap.add_argument('--max-per-source', type=int, default=400)
     ap.add_argument('--no-ai', action='store_true')
     ap.add_argument('--no-verify', action='store_true')

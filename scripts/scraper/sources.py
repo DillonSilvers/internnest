@@ -31,11 +31,13 @@ def _ssl_context():
 SSL_CTX = _ssl_context()
 
 
-def _request_json(url, data=None, timeout=20):
+def _request_json(url, data=None, timeout=20, extra_headers=None):
     wait = THROTTLE_S - (time.time() - _last_fetch[0])
     if wait > 0:
         time.sleep(wait)
     headers = {'User-Agent': UA, 'Accept': 'application/json'}
+    if extra_headers:
+        headers.update(extra_headers)
     if data is not None:
         headers['Content-Type'] = 'application/json'
         data = json.dumps(data).encode()
@@ -52,8 +54,8 @@ def _request_json(url, data=None, timeout=20):
     return json.loads(body)
 
 
-def http_get_json(url, timeout=20):
-    return _request_json(url, timeout=timeout)
+def http_get_json(url, timeout=20, extra_headers=None):
+    return _request_json(url, timeout=timeout, extra_headers=extra_headers)
 
 
 def http_post_json(url, payload, timeout=20):
@@ -156,6 +158,55 @@ def fetch_workday(c, page=20, cap=400):
             offset += page
             if not jobs or offset >= int(data.get('total', 0)):
                 break
+    return out
+
+
+# ---- USAJOBS: federal Pathways internships (official API, free key) ----
+
+def _load_env_var(name, default=''):
+    import os
+    from pathlib import Path
+    v = os.environ.get(name, '').strip()
+    if v:
+        return v
+    env_path = Path(__file__).resolve().parents[2] / '.env'
+    if env_path.exists():
+        m = re.search(rf'^\s*{name}\s*=\s*["\']?([^"\'\n]+)', env_path.read_text(), re.M)
+        if m:
+            return m.group(1).strip()
+    return default
+
+
+def fetch_usajobs(max_items=None, log=print):
+    key = _load_env_var('USAJOBS_API_KEY')
+    if not key:
+        raise RuntimeError('USAJOBS_API_KEY not set (env or repo-root .env)')
+    email = _load_env_var('USAJOBS_EMAIL', 'hello@internnest.ai')
+    headers = {'Authorization-Key': key, 'User-Agent': email}
+    out, page = [], 1
+    while True:
+        data = http_get_json(
+            f'https://data.usajobs.gov/api/search?HiringPath=student&ResultsPerPage=500&Page={page}',
+            extra_headers=headers)
+        sr = data.get('SearchResult') or {}
+        items = sr.get('SearchResultItems') or []
+        for it in items:
+            d = it.get('MatchedObjectDescriptor') or {}
+            close = str(d.get('ApplicationCloseDate', ''))[:10]
+            out.append(_posting(
+                d.get('OrganizationName') or d.get('DepartmentName'),
+                d.get('PositionTitle'),
+                d.get('PositionLocationDisplay', ''),
+                d.get('PositionURI'),
+                term_hint=f'apply by {close}' if close else '',
+                source='usajobs'))
+            if max_items and len(out) >= max_items:
+                return out
+        total = int(sr.get('SearchResultCountAll', 0))
+        if not items or page * 500 >= total:
+            break
+        page += 1
+    log(f'  usajobs: {len(out)} federal Pathways postings')
     return out
 
 
