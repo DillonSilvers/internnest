@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
   if (apiKey) {
     const aiCandidates = candidates.slice(0, 8);
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), premium ? 20000 : 9000);
+    const timer = setTimeout(() => controller.abort(), premium ? 20000 : 15000);
     try {
       const { system, user } = buildMatchPrompt(profile, aiCandidates);
       const text = await callClaude({ apiKey, system, user, model: modelFor(premium), signal: controller.signal });
