@@ -344,6 +344,20 @@ if (heroMiniEl) heroMiniEl.addEventListener('submit', (e) => {
   window.location.href = '/get-matched';
 });
 
+/* Arriving from the hero mini-form: pre-fill and clear the stash */
+(function applyHeroPrefill() {
+  if (!document.getElementById('matchForm')) return;
+  let raw = null;
+  try { raw = localStorage.getItem('inn_prefill'); localStorage.removeItem('inn_prefill'); } catch (err) { return; }
+  if (!raw) return;
+  try {
+    const p = JSON.parse(raw);
+    if (p.major) document.getElementById('major').value = p.major;
+    if (p.year)  document.getElementById('year').value  = p.year;
+    if (p.role)  document.getElementById('role').value  = p.role;
+  } catch (err) { /* malformed stash — ignore */ }
+})();
+
 const matchFormEl = document.getElementById('matchForm');
 if (matchFormEl) matchFormEl.addEventListener('submit', async function (e) {
   e.preventDefault();
@@ -372,6 +386,7 @@ if (matchFormEl) matchFormEl.addEventListener('submit', async function (e) {
 
   // Show loading in the existing results section.
   const section = document.getElementById('results');
+  section.classList.add('scanning');
   document.getElementById('resultsHeading').textContent = 'Finding your matches…';
   document.getElementById('resultsSubheading').textContent = 'Analyzing your profile against real internships.';
   document.getElementById('matchCards').innerHTML =
@@ -393,6 +408,7 @@ if (matchFormEl) matchFormEl.addEventListener('submit', async function (e) {
     matches = [];
   }
   if (!matches.length) {
+    section.classList.remove('scanning');
     document.getElementById('matchCards').innerHTML =
       '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray-500)">We couldn\'t load matches just now — please try again in a moment.</div>';
     return;
@@ -403,6 +419,7 @@ if (matchFormEl) matchFormEl.addEventListener('submit', async function (e) {
 function renderResults(matches, user) {
   lastResults = { matches, user };
   const section = document.getElementById('results');
+  section.classList.remove('scanning');
   document.getElementById('resultsHeading').textContent =
     `${user.name}, here are your top ${user.industry} matches`;
   document.getElementById('resultsSubheading').textContent =

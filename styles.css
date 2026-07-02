@@ -396,6 +396,13 @@ p { margin: 0; }
   .hv-main, .hv-side-1, .hv-side-2, .steps-row > .step-card { animation: none; }
 }
 
+/* Get Matched: live-dataset strip + scanning pulse while the algorithm runs */
+.algo-strip { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--gray-700); margin-top: 14px; }
+.algo-strip strong { color: var(--glass-accent); }
+#results.scanning .section-header h2 { animation: algoPulse 1.2s ease-in-out infinite; }
+@keyframes algoPulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { #results.scanning .section-header h2 { animation: none; } }
+
 /* ======================== FORM ======================== */
 .form-card {
   max-width: 800px;
