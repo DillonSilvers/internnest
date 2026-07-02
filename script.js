@@ -563,16 +563,19 @@ function buildTrackerCard(card) {
   const prevBtn = prev ? `<button class="tracker-btn" onclick="moveCard('${card.id}','${prev}')">${prevLabel}</button>` : '';
   const nextBtn = next ? `<button class="tracker-btn primary" onclick="moveCard('${card.id}','${next}')">${nextLabel}</button>` : '';
   const scoreDisplay = card.score > 0 ? `${card.score}%` : '';
+  const linkIcon = card.link ? ` <a href="${escHtml(card.link)}" target="_blank" rel="noopener" class="tracker-link" title="Open listing">&#8599;</a>` : '';
+  const notesLine = card.notes ? `<div class="tracker-notes">${escHtml(card.notes)}</div>` : '';
 
   return `
 <div class="tracker-card">
   <div class="tracker-card-top">
     <div>
-      <div class="tracker-title">${card.title}${demoTracker ? ' <span class="tracker-demo-tag">example</span>' : ''}</div>
-      <div class="tracker-company">${card.company}</div>
+      <div class="tracker-title">${escHtml(card.title)}${demoTracker ? ' <span class="tracker-demo-tag">example</span>' : ''}</div>
+      <div class="tracker-company">${escHtml(card.company)}${linkIcon}</div>
     </div>
     <div class="tracker-score" style="color:${scoreColor}">${scoreDisplay}</div>
   </div>
+  ${notesLine}
   <div class="tracker-actions">
     ${prevBtn}${nextBtn}
     <button class="tracker-btn danger" onclick="removeCard('${card.id}')" aria-label="Remove">&times;</button>
@@ -629,15 +632,58 @@ function markBtnDone(btnId, text, bg, color) {
   btn.style.border = `1.5px solid ${color}`;
 }
 
-function promptAddCard() {
-  const title   = prompt('Internship title:');
-  if (!title) return;
-  const company = prompt('Company name:');
-  if (!company) return;
-  clearDemoCards();
-  trackerCards.push({ id: `c-${cardCounter++}`, title, company, stage: 'saved', score: 0 });
-  saveTracker();
-  renderTracker();
+function escHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, (ch) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]
+  ));
+}
+
+function openAddCard() {
+  let m = document.getElementById('addCardModal');
+  if (!m) {
+    m = document.createElement('div');
+    m.id = 'addCardModal';
+    m.className = 'login-overlay';
+    m.innerHTML = `
+      <div class="login-card add-card-modal" role="dialog" aria-modal="true">
+        <button class="login-close" onclick="closeAddCard();return false;" aria-label="Close">&times;</button>
+        <h3>Add an internship</h3>
+        <form id="addCardForm">
+          <div class="form-group"><label for="acTitle">Role title <span class="req">*</span></label><input type="text" id="acTitle" required placeholder="e.g. Software Engineering Intern" /></div>
+          <div class="form-group"><label for="acCompany">Company <span class="req">*</span></label><input type="text" id="acCompany" required placeholder="e.g. Stripe" /></div>
+          <div class="form-group"><label for="acLink">Listing link <span class="form-opt">(optional)</span></label><input type="url" id="acLink" placeholder="https://" /></div>
+          <div class="form-group"><label for="acStage">Stage</label><select id="acStage"><option value="saved">Saved</option><option value="applied">Applied</option><option value="interviewing">Interviewing</option><option value="offer">Offer</option><option value="rejected">Rejected</option></select></div>
+          <div class="form-group"><label for="acNotes">Notes <span class="form-opt">(optional)</span></label><textarea id="acNotes" rows="2" placeholder="Deadline, contact, next step"></textarea></div>
+          <button type="submit" class="btn-primary">Add to tracker</button>
+        </form>
+      </div>`;
+    document.body.appendChild(m);
+    m.addEventListener('click', (e) => { if (e.target === m) closeAddCard(); });
+    document.getElementById('addCardForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('acTitle').value.trim();
+      const company = document.getElementById('acCompany').value.trim();
+      if (!title || !company) return;
+      clearDemoCards();
+      trackerCards.push({
+        id: `c-${cardCounter++}`, title, company,
+        stage: document.getElementById('acStage').value, score: 0,
+        link: document.getElementById('acLink').value.trim(),
+        notes: document.getElementById('acNotes').value.trim(),
+      });
+      saveTracker();
+      renderTracker();
+      document.getElementById('addCardForm').reset();
+      closeAddCard();
+    });
+  }
+  m.style.display = 'flex';
+  document.getElementById('acTitle').focus();
+}
+
+function closeAddCard() {
+  const m = document.getElementById('addCardModal');
+  if (m) m.style.display = 'none';
 }
 
 /* Export the tracker to a spreadsheet file that opens in Excel or Google Sheets. */
@@ -647,9 +693,9 @@ function csvCell(v) {
 }
 function exportTrackerToExcel() {
   if (!trackerCards.length) { showToast('Your tracker is empty — save some internships first.'); return; }
-  const header = ['Company', 'Role', 'Stage', 'Match Score', 'Notes'];
+  const header = ['Company', 'Role', 'Stage', 'Match Score', 'Link', 'Notes'];
   const rows = trackerCards.map(c => [
-    c.company, c.title, capitalize(c.stage), c.score > 0 ? c.score + '%' : '', '',
+    c.company, c.title, capitalize(c.stage), c.score > 0 ? c.score + '%' : '', c.link || '', c.notes || '',
   ]);
   const csv = [header, ...rows].map(r => r.map(csvCell).join(',')).join('\r\n');
   // Prepend a UTF-8 BOM (U+FEFF) so Excel opens accented characters correctly.

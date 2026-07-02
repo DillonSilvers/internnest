@@ -722,6 +722,15 @@ select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns
 .feat-no { color: var(--gray-300); }
 .price-card .btn-primary, .price-card .btn-outline { margin-top: auto; width: 100%; justify-content: center; }
 
+/* Tracker add-internship modal (reuses the login overlay/card glass) */
+.add-card-modal { max-width: 460px; width: 100%; text-align: left; }
+.add-card-modal .form-group { margin-bottom: 14px; display: flex; flex-direction: column; gap: 5px; }
+.add-card-modal label { font-size: 13px; font-weight: 700; }
+.add-card-modal input, .add-card-modal select, .add-card-modal textarea { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--gray-300); font: inherit; font-size: 14px; background: rgba(255,255,255,.75); }
+.add-card-modal .btn-primary { width: 100%; justify-content: center; }
+.tracker-link { color: var(--glass-accent); text-decoration: none; font-weight: 800; }
+.tracker-notes { font-size: 12.5px; color: var(--gray-500); margin-top: 6px; line-height: 1.45; }
+
 /* ======================== FOOTER ======================== */
 .footer { background: var(--black); color: rgba(255,255,255,.7); padding: 0; }
 .footer-inner {
