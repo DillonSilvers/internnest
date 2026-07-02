@@ -127,7 +127,7 @@ def selftest():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--sources', default='simplify,greenhouse,lever,ashby')
+    ap.add_argument('--sources', default='simplify,greenhouse,lever,ashby,workday')
     ap.add_argument('--max-per-source', type=int, default=400)
     ap.add_argument('--no-ai', action='store_true')
     ap.add_argument('--no-verify', action='store_true')
