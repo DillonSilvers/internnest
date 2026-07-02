@@ -172,6 +172,9 @@ p { margin: 0; }
   width: auto;
   display: block;
 }
+.plan-note {
+  font-size: 12.5px; color: var(--gray-500); margin-top: 12px; text-align: center;
+}
 .tracker-demo-tag {
   font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
   color: var(--gray-500); background: rgba(120,120,140,.12);
@@ -746,12 +749,21 @@ select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns
   .hv-main { max-width: 100%; }
   .hv-side-1 { top: 180px; }
   .hv-side-2 { top: 240px; }
-  .tracker-board { grid-template-columns: repeat(5, minmax(170px, 1fr)); }
+  .tracker-board { grid-template-columns: repeat(5, minmax(240px, 1fr)); }
 }
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
+  /* phones: the bar is logo + hamburger only — CTA and account live in the menu
+     (#authNav is hidden next to its base rule further down, after it in the cascade) */
+  .nav-cta { display: none; }
+  /* 16px inputs stop iOS from auto-zooming on focus */
+  .form-card input, .form-card select, .form-card textarea,
+  .contact-card input, .contact-card textarea, #loginEmail { font-size: 16px; }
+  /* kanban: wider columns + snap so it swipes card-by-card instead of squishing */
+  .tracker-board { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .tracker-col { scroll-snap-align: start; }
   .hero { padding-top: 50px; }
   .hero-visual { display: none; }
   .steps-row { flex-direction: column; }
@@ -974,6 +986,7 @@ body::before {
 .auth-link:hover { color: var(--glass-accent, #5b4bff); }
 .auth-email { font-size: 13px; color: var(--gray-500); max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media (max-width: 640px) { .auth-email { display: none; } }
+@media (max-width: 768px) { #authNav { display: none; } } /* account lives in the hamburger menu on phones */
 
 .login-overlay {
   display: none; position: fixed; inset: 0; z-index: 1000;

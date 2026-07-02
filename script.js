@@ -764,6 +764,25 @@ function renderAuthNav() {
   } else {
     el.innerHTML = `<a href="#" class="auth-link" onclick="openLogin();return false;">Log in</a>`;
   }
+  // Mirror the account action into the hamburger menu (the bar hides it on phones).
+  const mm = document.getElementById('mobileMenu');
+  if (mm) {
+    let m = document.getElementById('authNavMobile');
+    if (!m) {
+      m = document.createElement('a');
+      m.id = 'authNavMobile';
+      m.href = '#';
+      const cta = mm.querySelector('.btn-primary');
+      mm.insertBefore(m, cta || null);
+    }
+    if (authUser) {
+      m.textContent = 'Log out';
+      m.onclick = (e) => { e.preventDefault(); closeMobileMenu(); signOut(); };
+    } else {
+      m.textContent = 'Log in';
+      m.onclick = (e) => { e.preventDefault(); closeMobileMenu(); openLogin(); };
+    }
+  }
 }
 
 async function initAuth() {
