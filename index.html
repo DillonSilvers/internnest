@@ -58,12 +58,30 @@
           <span class="badge-pulse"></span>
           AI-powered · Built for college students
         </div>
-        <h1>Find Your Dream<br>Internship with AI</h1>
-        <p class="hero-sub">Fill out your goals, major, and skills. InternNest finds your best-fit internships, scores each match, and helps you land the role with tailored resume tips and outreach messages.</p>
-        <div class="hero-actions">
-          <a href="/get-matched" class="btn-primary btn-xl">Find Internships</a>
-          <a href="/how-it-works" class="btn-ghost btn-xl">See How It Works →</a>
-        </div>
+        <h1>Find Your Dream<br>Internship</h1>
+        <p class="hero-sub">Tell us your major and goals. Our AI scores real internships against your profile and shows you exactly where you fit.</p>
+        <form id="heroMiniForm" class="hero-mini" autocomplete="off">
+          <div class="hero-mini-fields">
+            <div class="hero-mini-group">
+              <label for="hmMajor">Major</label>
+              <input type="text" id="hmMajor" placeholder="e.g. Finance" />
+            </div>
+            <div class="hero-mini-group">
+              <label for="hmYear">Class year</label>
+              <select id="hmYear">
+                <option value="">Select</option>
+                <option>Freshman</option><option>Sophomore</option>
+                <option>Junior</option><option>Senior</option>
+              </select>
+            </div>
+            <div class="hero-mini-group">
+              <label for="hmRole">Dream role</label>
+              <input type="text" id="hmRole" placeholder="e.g. IB Analyst" />
+            </div>
+          </div>
+          <button type="submit" class="btn-primary btn-xl hero-mini-btn">Get Matched →</button>
+          <a href="/how-it-works" class="hero-mini-link">See how it works</a>
+        </form>
         <div class="hero-stats">
           <div class="stat"><strong>2,000+</strong><span>Internships tracked</span></div>
           <div class="stat-sep"></div>
@@ -115,9 +133,9 @@
     <!-- ======================== HOW IT WORKS ======================== -->
     <section id="how" class="section section-light">
       <div class="section-header">
-        <div class="eyebrow">Simple 3-step process</div>
-        <h2>From blank resume to best-fit matches</h2>
-        <p class="section-sub">Most students find their top internship matches in under 3 minutes.</p>
+        <div class="eyebrow">The process</div>
+        <h2>How it works</h2>
+        <p class="section-sub">Most students see their top matches in under 3 minutes.</p>
       </div>
       <div class="steps-row">
         <div class="step-card">

@@ -331,6 +331,19 @@ const DATA = {
 /* ====================================================
    FORM SUBMISSION → GENERATE MATCHES
    ==================================================== */
+/* Hero mini-form: stash the answers and continue on /get-matched */
+const heroMiniEl = document.getElementById('heroMiniForm');
+if (heroMiniEl) heroMiniEl.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const prefill = {
+    major: document.getElementById('hmMajor').value.trim(),
+    year:  document.getElementById('hmYear').value,
+    role:  document.getElementById('hmRole').value.trim(),
+  };
+  try { localStorage.setItem('inn_prefill', JSON.stringify(prefill)); } catch (err) { /* storage off — still navigate */ }
+  window.location.href = '/get-matched';
+});
+
 const matchFormEl = document.getElementById('matchForm');
 if (matchFormEl) matchFormEl.addEventListener('submit', async function (e) {
   e.preventDefault();

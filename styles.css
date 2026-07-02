@@ -239,7 +239,7 @@ p { margin: 0; }
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 90px 5% 100px;
+  padding: 48px 5% 72px;
 }
 .hero-glow {
   position: absolute;
@@ -282,8 +282,19 @@ p { margin: 0; }
 .stat span { font-size: 13px; color: var(--gray-500); }
 .stat-sep { width: 1px; height: 32px; background: var(--gray-300); }
 
+/* Hero mini-form — starts the Get Matched flow from the homepage */
+.hero-mini { display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: var(--radius-lg); max-width: 540px; margin-bottom: 28px; }
+.hero-mini-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.hero-mini-group { display: flex; flex-direction: column; gap: 4px; }
+.hero-mini-group label { font-size: 12px; font-weight: 700; color: var(--gray-700); }
+.hero-mini input, .hero-mini select { padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.65); background: rgba(255,255,255,.55); font: inherit; font-size: 14px; color: var(--glass-ink); }
+.hero-mini input:focus, .hero-mini select:focus { outline: 2px solid var(--glass-accent); outline-offset: 0; }
+.hero-mini-btn { width: 100%; justify-content: center; }
+.hero-mini-link { font-size: 14px; color: var(--gray-700); text-align: center; text-decoration: none; }
+.hero-mini-link:hover { color: var(--glass-accent); }
+
 /* Hero Visual */
-.hero-visual { position: relative; height: 420px; }
+.hero-visual { position: relative; height: 400px; }
 .hv-card {
   background: var(--white);
   border: 1px solid var(--gray-300);
@@ -320,8 +331,8 @@ p { margin: 0; }
 .reason-warn { color: var(--amber); }
 
 .hv-side { padding: 16px; display: flex; align-items: center; gap: 12px; }
-.hv-side-1 { width: 180px; top: 240px; right: -10px; animation: floatY 5s ease-in-out infinite 1.5s; }
-.hv-side-2 { width: 190px; top: 340px; left: 30px; animation: floatY 5s ease-in-out infinite 0.8s; }
+.hv-side-1 { width: 180px; top: 215px; right: -10px; animation: floatY 5s ease-in-out infinite 1.5s; }
+.hv-side-2 { width: 190px; top: 315px; left: 30px; animation: floatY 5s ease-in-out infinite 0.8s; }
 .hv-mini-score { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
 .score-ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .ring-track { fill: none; stroke: var(--blue-light); stroke-width: 5; }
@@ -760,7 +771,9 @@ select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns
   .nav-cta { display: none; }
   /* 16px inputs stop iOS from auto-zooming on focus */
   .form-card input, .form-card select, .form-card textarea,
-  .contact-card input, .contact-card textarea, #loginEmail { font-size: 16px; }
+  .contact-card input, .contact-card textarea, #loginEmail,
+  .hero-mini input, .hero-mini select { font-size: 16px; }
+  .hero-mini-fields { grid-template-columns: 1fr; }
   /* kanban: wider columns + snap so it swipes card-by-card instead of squishing */
   .tracker-board { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
   .tracker-col { scroll-snap-align: start; }
@@ -919,7 +932,7 @@ body::before {
 
 /* one liquid-glass treatment for every card-like surface (v2: specular rim + dispersion edges + depth) */
 .feature-card, .price-card, .form-card, .faq-item, .blog-card, .teaser-card, .role-card,
-.step-card, .match-card, .tracker-col, .tracker-card, .contact-card, .hv-card, .hv-main, .hv-side {
+.step-card, .match-card, .tracker-col, .tracker-card, .contact-card, .hv-card, .hv-main, .hv-side, .hero-mini {
   background:
     radial-gradient(125% 85% at 16% -14%, rgba(255,255,255,.62), transparent 52%),
     linear-gradient(150deg, rgba(255,255,255,.50), rgba(255,255,255,.24)) !important;
