@@ -27,6 +27,7 @@ For EACH numbered posting return one JSON object:
 Rules:
 - keep=false for anything that is not a real internship for college students
   (full-time roles, fellowships for PhDs, "internal" roles, ambiguous titles).
+  Co-op programs and bank "Summer Analyst"/"Summer Associate" programs COUNT as internships.
 - industry MUST be exactly one of: {', '.join(INDUSTRIES)}. If none fits, keep=false.
 - work_type MUST be exactly one of: {', '.join(WORK_TYPES)}. Infer from the location
   text ("Remote" in location -> Remote); default In-Person.

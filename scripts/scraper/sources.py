@@ -106,65 +106,93 @@ def fetch_ashby(c):
     return out
 
 
+WD_SEARCHES = ['intern', 'co-op', 'summer analyst']  # workday search is keyword-based
+
+
 def fetch_workday(c, page=20, cap=200):
     """Workday tenants expose the same JSON endpoint their own career sites use.
     Entry needs: tenant, host (wd1/wd5/...), site (the board name in the careers URL)."""
     tenant, host, site = c['tenant'], c['host'], c['site']
     base = f'https://{tenant}.{host}.myworkdayjobs.com'
-    out, offset = [], 0
-    while offset < cap:
-        data = http_post_json(f'{base}/wday/cxs/{tenant}/{site}/jobs',
-                              {'appliedFacets': {}, 'limit': page, 'offset': offset,
-                               'searchText': 'intern'})
-        jobs = data.get('jobPostings') or []
-        for j in jobs:
-            path = j.get('externalPath', '')
-            if not path:
-                continue
-            out.append(_posting(c['name'], j.get('title'), j.get('locationsText', ''),
-                                f'{base}/en-US/{site}{path}',
-                                industry_hint=c.get('industry_hint', ''),
-                                source=f'workday:{tenant}'))
-        offset += page
-        if not jobs or offset >= int(data.get('total', 0)):
-            break
+    out, seen = [], set()
+    for text in WD_SEARCHES:
+        offset = 0
+        while offset < cap:
+            data = http_post_json(f'{base}/wday/cxs/{tenant}/{site}/jobs',
+                                  {'appliedFacets': {}, 'limit': page, 'offset': offset,
+                                   'searchText': text})
+            jobs = data.get('jobPostings') or []
+            for j in jobs:
+                path = j.get('externalPath', '')
+                if not path or path in seen:
+                    continue
+                seen.add(path)
+                out.append(_posting(c['name'], j.get('title'), j.get('locationsText', ''),
+                                    f'{base}/en-US/{site}{path}',
+                                    industry_hint=c.get('industry_hint', ''),
+                                    source=f'workday:{tenant}'))
+            offset += page
+            if not jobs or offset >= int(data.get('total', 0)):
+                break
     return out
 
 
-# ---- SimplifyJobs open-source internship list (the volume source) ----
+# ---- Community internship lists (the volume sources) ----
+# Each group is one list with branch fallbacks; all use the same listings.json format.
 
-SIMPLIFY_URLS = [
-    'https://raw.githubusercontent.com/SimplifyJobs/Summer2026-Internships/dev/.github/scripts/listings.json',
-    'https://raw.githubusercontent.com/SimplifyJobs/Summer2026-Internships/main/.github/scripts/listings.json',
+LIST_GROUPS = [
+    ('simplify', [
+        'https://raw.githubusercontent.com/SimplifyJobs/Summer2026-Internships/dev/.github/scripts/listings.json',
+        'https://raw.githubusercontent.com/SimplifyJobs/Summer2026-Internships/main/.github/scripts/listings.json',
+    ]),
+    ('vanshb03', [
+        'https://raw.githubusercontent.com/vanshb03/Summer2026-Internships/dev/.github/scripts/listings.json',
+        'https://raw.githubusercontent.com/vanshb03/Summer2026-Internships/main/.github/scripts/listings.json',
+    ]),
+    ('cvrve', [
+        'https://raw.githubusercontent.com/cvrve/Summer2026-Internships/dev/.github/scripts/listings.json',
+        'https://raw.githubusercontent.com/cvrve/Summer2026-Internships/main/.github/scripts/listings.json',
+    ]),
 ]
 
 
-def fetch_simplify(max_items=None):
-    data = None
-    last_err = None
-    for url in SIMPLIFY_URLS:
-        try:
-            data = http_get_json(url)
-            break
-        except Exception as e:  # branch layout changes occasionally; try the next
-            last_err = e
-    if data is None:
-        raise RuntimeError(f'SimplifyJobs list unavailable: {last_err}')
-    out = []
-    for item in data:
-        if not item.get('active', False):
+def fetch_simplify(max_items=None, log=print):
+    """Pull every configured community list; a group that fails just logs."""
+    out, seen = [], set()
+    for name, urls in LIST_GROUPS:
+        data, last_err = None, None
+        for url in urls:
+            try:
+                data = http_get_json(url)
+                break
+            except Exception as e:  # branch layout changes occasionally; try the next
+                last_err = e
+        if data is None:
+            log(f'  ! list {name} unavailable: {last_err}')
             continue
-        terms = item.get('terms') or []
-        locs = item.get('locations') or []
-        out.append(_posting(
-            item.get('company_name'), item.get('title'),
-            ' / '.join(locs[:3]),
-            item.get('url'),
-            term_hint=', '.join(terms[:2]),
-            source='simplify',
-        ))
-        if max_items and len(out) >= max_items:
-            break
+        added = 0
+        for item in data if isinstance(data, list) else []:
+            if not item.get('active', False):
+                continue
+            url = (item.get('url') or '').strip()
+            if not url or url in seen:
+                continue
+            seen.add(url)
+            terms = item.get('terms') or []
+            locs = item.get('locations') or []
+            out.append(_posting(
+                item.get('company_name'), item.get('title'),
+                ' / '.join(locs[:3]),
+                url,
+                term_hint=', '.join(terms[:2]),
+                source=name,
+            ))
+            added += 1
+            if max_items and len(out) >= max_items:
+                return out
+        log(f'  list {name}: +{added} active postings')
+    if not out:
+        raise RuntimeError('no community list reachable')
     return out
 
 

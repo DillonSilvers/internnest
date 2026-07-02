@@ -29,7 +29,8 @@ SITE_JSON = ROOT / 'internships.json'
 CANDIDATES = HERE / 'candidates.json'
 COMPANIES = HERE / 'companies.json'
 
-INTERN_RE = re.compile(r'\bintern(ship)?s?\b', re.I)
+# Interns by any name: banks say "Summer Analyst", engineering/healthcare say "Co-op".
+INTERN_RE = re.compile(r'\bintern(ship)?s?\b|\bco-?op\b|\bsummer (analyst|associate)s?\b', re.I)
 
 
 def norm_key(company, role):

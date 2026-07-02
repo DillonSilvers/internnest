@@ -445,6 +445,46 @@
       "slug": "vardaspace",
       "name": "Varda Space",
       "industry_hint": "Technology"
+    },
+    {
+      "slug": "komodohealth",
+      "name": "Komodo Health",
+      "industry_hint": "Healthcare"
+    },
+    {
+      "slug": "roku",
+      "name": "Roku",
+      "industry_hint": "Media & Entertainment"
+    },
+    {
+      "slug": "voxmedia",
+      "name": "Vox Media",
+      "industry_hint": "Media & Entertainment"
+    },
+    {
+      "slug": "charlesriverassociates",
+      "name": "Charles River Associates",
+      "industry_hint": "Consulting"
+    },
+    {
+      "slug": "vaynermedia",
+      "name": "VaynerMedia",
+      "industry_hint": "Marketing"
+    },
+    {
+      "slug": "klaviyo",
+      "name": "Klaviyo",
+      "industry_hint": "Marketing"
+    },
+    {
+      "slug": "geniussports",
+      "name": "Genius Sports",
+      "industry_hint": "Sports Business"
+    },
+    {
+      "slug": "prizepicks",
+      "name": "PrizePicks",
+      "industry_hint": "Sports Business"
     }
   ],
   "lever": [
@@ -883,6 +923,41 @@
     {
       "slug": "periodic-labs",
       "name": "Periodic Labs",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "rula",
+      "name": "Rula",
+      "industry_hint": "Healthcare"
+    },
+    {
+      "slug": "eightsleep",
+      "name": "Eight Sleep",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "ether",
+      "name": "Ether.fi",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "homebase",
+      "name": "Homebase",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "pika",
+      "name": "Pika",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "poshmark",
+      "name": "Poshmark",
+      "industry_hint": "Technology"
+    },
+    {
+      "slug": "vendelux",
+      "name": "Vendelux",
       "industry_hint": "Technology"
     }
   ],
@@ -1439,6 +1514,83 @@
       "site": "external",
       "name": "Wash U",
       "industry_hint": "Technology"
+    },
+    {
+      "tenant": "aah",
+      "host": "wd5",
+      "site": "External",
+      "name": "Advocate Health Care",
+      "industry_hint": "Healthcare"
+    },
+    {
+      "tenant": "accenture",
+      "host": "wd103",
+      "site": "AvanadeCareers",
+      "name": "Avanade",
+      "industry_hint": "Technology"
+    },
+    {
+      "tenant": "blackstone",
+      "host": "wd1",
+      "site": "Blackstone_Campus_Careers",
+      "name": "Blackstone",
+      "industry_hint": "Finance"
+    },
+    {
+      "tenant": "bmo",
+      "host": "wd3",
+      "site": "Privileged",
+      "name": "BMO",
+      "industry_hint": "Technology"
+    },
+    {
+      "tenant": "cat",
+      "host": "wd5",
+      "site": "CaterpillarCareers",
+      "name": "Caterpillar Inc.",
+      "industry_hint": "Technology"
+    },
+    {
+      "tenant": "imh",
+      "host": "wd108",
+      "site": "IntermountainCareers",
+      "name": "Intermountain Healthcare",
+      "industry_hint": "Finance"
+    },
+    {
+      "tenant": "leidos",
+      "host": "wd5",
+      "site": "External",
+      "name": "Kudu Dynamics",
+      "industry_hint": "Technology"
+    },
+    {
+      "tenant": "liveramp",
+      "host": "wd5",
+      "site": "LiveRampCareers",
+      "name": "LiveRamp",
+      "industry_hint": "Technology"
+    },
+    {
+      "tenant": "salesforce",
+      "host": "wd12",
+      "site": "External_Career_Site",
+      "name": "Salesforce",
+      "industry_hint": "Technology"
+    },
+    {
+      "tenant": "target",
+      "host": "wd5",
+      "site": "targetcareers",
+      "name": "Target",
+      "industry_hint": "Consulting"
+    },
+    {
+      "tenant": "pnc",
+      "host": "wd5",
+      "site": "External",
+      "name": "PNC",
+      "industry_hint": "Finance"
     }
   ]
 }
