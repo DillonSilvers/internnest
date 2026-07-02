@@ -210,6 +210,7 @@
       <a href="#match">A match, step by step</a>
       <a href="#money">The $9.99</a>
       <a href="#data">The data machine</a>
+      <a href="#calendar">The calendar</a>
       <a href="#changes">Making changes</a>
       <a href="#costs">Costs</a>
       <a href="#breaks">If something breaks</a>
@@ -328,7 +329,7 @@
         More detail in → better matches out.</p>
       </div></div>
       <div class="step glass"><span class="step-n"></span><div>
-        <h4>The site shortlists 15 from the 1,000+ database</h4>
+        <h4>The site shortlists 15 from the 2,000+ database</h4>
         <p>Instant, rule-based filtering: right industry first, then hard eligibility. If a posting
         states a minimum GPA or is juniors-only, ineligible students never see it. Ultra-selective firms
         (Goldman, McKinsey…) are held back from low GPAs. Location, remote preference, and skill
@@ -413,8 +414,35 @@
     <div class="easy-way glass">
       <b>The easy way:</b> open the project in Claude Code and say
       <em>"run the scraper loop and push."</em> It runs all of this, checks the results, and deploys.
-      Every listing was found on a public job board, cleaned and fact-checked by AI, and its apply
-      link tested. The machine only adds, verifies, and retires listings; it never invents them.
+      It pulls from seven public sources (community lists, five job-board systems, and the official
+      US government jobs API). Every listing was found on a public job board, cleaned and fact-checked
+      by AI, and its apply link tested. The machine only adds, verifies, and retires listings; it
+      never invents them.
+    </div>
+  </section>
+
+  <section id="calendar" class="wrap">
+    <div class="sec-head">
+      <h2>The recruiting calendar</h2>
+      <p>Internships run on a school-year clock. Run the machine with it, not against it.
+      The one rule: <strong>always stock next summer's class</strong>. That is what students
+      are shopping for.</p>
+    </div>
+    <div class="tbl-card glass">
+      <table>
+        <thead><tr><th>When</th><th>What happens</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td>August–October</td><td>The flood. Every board posts next summer's class (Summer 2027 and so on) and students search hardest.</td><td>Run the full data machine in early August. This is the month to point Google Ads spend at the site.</td></tr>
+          <tr><td>October–February</td><td>Deadline season. Finance and consulting close first (often by October), tech by December, the rest trickle to March.</td><td>Re-run the machine monthly so new postings land while old ones retire. "Deadlines closing" is honest urgency for marketing.</td></tr>
+          <tr><td>March–June</td><td>Quiet season. Mostly rolling and late roles.</td><td>Nothing. The weekly link check retires dead postings on its own.</td></tr>
+          <tr><td>July</td><td>The yearly low point; boards are thinnest everywhere.</td><td>Do not panic at lower counts. Prep the August run.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="easy-way glass">
+      <b>Why it matters:</b> roughly half the listings on the site at any moment will close within a
+      few months. That is normal. The refresh loop quietly removes dead ones every week, and one big
+      scrape at the start of each season restocks the shelves. Freshness is the product.
     </div>
   </section>
 
