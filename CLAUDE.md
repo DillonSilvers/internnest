@@ -51,7 +51,9 @@ it falls back to formula ranking (`mode: "fallback"` in the response).
 
 ## This machine (Dillon's, Windows)
 - Use `python`, not `python3` (Windows installs it as `python`).
-- Run tests as `node --test lib/` (the folder form; shell globs differ here).
+- Run tests with `node --test` (no path arg). The `lib/` folder form errors on
+  the Node installed here (24.x); the bare command discovers all `*.test.js`.
 - Paths use backslashes in Windows shells, but forward slashes in these docs
   work fine when passed to python/node.
-- Git credentials come from GitHub Desktop; push normally.
+- Git credentials are stored by Git Credential Manager (set up at clone time);
+  push normally.
