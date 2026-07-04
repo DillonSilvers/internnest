@@ -49,12 +49,16 @@ function isUnlocked() { return authPremium || readUnlock() !== null; }
 function hasReport() { return authProduct === 'report' || localStorage.getItem('inn_report') === '1'; }
 
 async function startCheckout(product) {
+  // Require an account before any purchase, so Premium is always tied to a login.
+  if (!authUser) {
+    setPendingCheckout(product);
+    openLogin({ subtitle: 'Log in or create a free account to continue to checkout.' });
+    return;
+  }
   try {
-    const payload = { product };
-    if (authUser) payload.user_id = authUser.id; // tie the purchase to the signed-in account
     const res = await fetch('/api/create-checkout', {
       method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ product, user_id: authUser.id }),
     });
     const data = await res.json();
     if (data.url) { window.location.href = data.url; return; }
@@ -62,6 +66,26 @@ async function startCheckout(product) {
       ? 'Payments are not set up yet — check back soon.'
       : 'Could not start checkout. Please try again.');
   } catch (e) { alert('Could not start checkout. Please try again.'); }
+}
+
+/* Remember a purchase started while logged out, then resume it after login. Single-use,
+   expires after 30 min, and survives the login redirect (incl. a magic link in a new tab). */
+function setPendingCheckout(product) {
+  try { localStorage.setItem('inn_pending_checkout', JSON.stringify({ product, t: Date.now() })); } catch (e) {}
+}
+function takePendingCheckout() {
+  let raw = null;
+  try { raw = localStorage.getItem('inn_pending_checkout'); localStorage.removeItem('inn_pending_checkout'); } catch (e) {}
+  if (!raw) return null;
+  try { const o = JSON.parse(raw); if (o && o.product && Date.now() - o.t < 30 * 60 * 1000) return o.product; } catch (e) {}
+  return null;
+}
+function resumePendingCheckout() {
+  if (!authUser) return false;
+  const product = takePendingCheckout();
+  if (!product) return false;
+  startCheckout(product);
+  return true;
 }
 
 function printReport() {
@@ -741,16 +765,19 @@ async function initAuth() {
       authUser = sess ? sess.user : null;
       await refreshPremium();
       renderAuthNav();
+      if (authUser && resumePendingCheckout()) return; // returning from login to finish a purchase
       closeLogin();
       if (authUser && demoTracker) { clearDemoCards(); renderTracker(); }
       if (lastResults) renderResults(lastResults.matches, lastResults.user);
     });
+    if (authUser) resumePendingCheckout(); // restored session (e.g. magic link opened in a new tab)
   } catch (e) { /* auth is optional; the rest of the site works without it */ }
 }
 document.addEventListener('DOMContentLoaded', initAuth);
 
 /* ---- login modal ---- */
-function openLogin() {
+function openLogin(opts) {
+  const subtitle = (opts && opts.subtitle) || 'Save your matches and keep Premium across devices.';
   let m = document.getElementById('loginModal');
   if (!m) {
     m = document.createElement('div');
@@ -760,7 +787,7 @@ function openLogin() {
       <div class="login-card" role="dialog" aria-modal="true">
         <button class="login-close" onclick="closeLogin();return false;" aria-label="Close">&times;</button>
         <h3>Log in or sign up</h3>
-        <p class="login-sub">Save your matches and keep Premium across devices.</p>
+        <p class="login-sub" id="loginSub">Save your matches and keep Premium across devices.</p>
         <button class="login-google" onclick="signInGoogle();return false;">
           <span class="g">G</span> Continue with Google
         </button>
@@ -774,9 +801,14 @@ function openLogin() {
     document.body.appendChild(m);
     m.addEventListener('click', (e) => { if (e.target === m) closeLogin(); });
   }
+  const sub = document.getElementById('loginSub');
+  if (sub) sub.textContent = subtitle;
   m.style.display = 'flex';
 }
-function closeLogin() { const m = document.getElementById('loginModal'); if (m) m.style.display = 'none'; }
+function closeLogin() {
+  try { localStorage.removeItem('inn_pending_checkout'); } catch (e) {} // dismissing = abandoning the purchase
+  const m = document.getElementById('loginModal'); if (m) m.style.display = 'none';
+}
 
 async function sendMagicLink(e) {
   e.preventDefault();
