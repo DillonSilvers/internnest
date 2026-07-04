@@ -132,12 +132,51 @@ async function handlePaymentReturn() {
     if (data.token) {
       localStorage.setItem('inn_unlock', data.token);
       if (data.product === 'report') localStorage.setItem('inn_report', '1');
+      showPurchaseConfirmation(data.product || 'premium');
     }
   } catch (e) { /* leave locked; user can retry */ }
   // Clean the URL so a refresh doesn't re-run verification.
   window.history.replaceState({}, '', window.location.pathname + '#results');
 }
 document.addEventListener('DOMContentLoaded', handlePaymentReturn);
+
+/* Post-purchase confirmation. Premium buyers get the Match Report as an add-on offer here,
+   since it no longer sits on the pricing page. Copy mirrors the report's real contents. */
+function showPurchaseConfirmation(product) {
+  const isReport = product === 'report';
+  let m = document.getElementById('purchaseModal');
+  if (!m) {
+    m = document.createElement('div');
+    m.id = 'purchaseModal';
+    m.className = 'login-overlay';
+    document.body.appendChild(m);
+    m.addEventListener('click', (e) => { if (e.target === m) closePurchaseModal(); });
+    m.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePurchaseModal(); });
+  }
+  const upsell = isReport ? '' : `
+    <div class="report-upsell">
+      <h4>Add the printable Match Report</h4>
+      <p>A polished PDF of your top 10 with full skill-gap analysis and outreach drafts, made for career-center visits. One-time $29.</p>
+      <button class="btn-outline" onclick="startCheckout('report');return false;">Add Match Report &middot; $29</button>
+    </div>`;
+  m.innerHTML = `
+    <div class="login-card" role="dialog" aria-modal="true">
+      <button class="login-close" onclick="closePurchaseModal();return false;" aria-label="Close">&times;</button>
+      <h3>${isReport ? 'Your Match Report is ready' : 'Premium unlocked'}</h3>
+      <p class="login-sub">${isReport
+        ? 'Everything is unlocked. Open your results and use Print / Save as PDF to get your report.'
+        : 'Every match, outreach message, and skill-gap detail is now open, on this device and any device you sign in to.'}</p>
+      ${upsell}
+      <a href="#" class="btn-primary btn-xl purchase-done" onclick="closePurchaseModal();return false;">See my matches</a>
+    </div>`;
+  m.style.display = 'flex';
+  const done = m.querySelector('.purchase-done');
+  if (done) done.focus();
+}
+function closePurchaseModal() {
+  const m = document.getElementById('purchaseModal');
+  if (m) m.style.display = 'none';
+}
 
 
 /* ====================================================
@@ -306,15 +345,43 @@ function buildCard(job, user, index, isPremium) {
   const outreachText = (typeof job.outreach === 'string' && job.outreach) ? job.outreach
     : `Hi,\n\nI'm ${user.name} from ${user.school}. I'm interested in the ${job.title} role at ${job.company}.\n\nBest,\n${user.name}`;
 
-  /* Free tier: the outreach message is Premium (per the pricing page), so show only a short
-     fading preview with an unlock button instead of the reveal toggle. */
-  const outreachSection = isPremium
-    ? `<div class="match-label">Ready-to-send LinkedIn outreach message</div>
-    <button class="btn-outreach" onclick="toggleOutreach('${job.id}')">Show LinkedIn Message</button>
+  /* Free tier proves value once: the #1 match is fully open with a caption saying so. The
+     other free cards keep score + reason visible (the pricing page's free promise) and show
+     their real skill gaps, tip, and outreach blurred behind the upgrade. */
+  const showcase = !isPremium && index === 0;
+
+  const missingSection = `
+  <div class="match-section">
+    <div class="match-label">Missing skills to improve your odds</div>
+    <ul class="missing-skills">${missingHtml}</ul>
+  </div>`;
+  const tipSection = `
+  <div class="match-section">
+    <div class="match-label">Application tip</div>
+    <p>${job.tip}</p>
+  </div>`;
+  const outreachSection = `
+  <div class="match-section outreach-section">
+    <div class="match-label">Ready-to-send LinkedIn outreach message</div>
+    ${isPremium
+      ? `<button class="btn-outreach" onclick="toggleOutreach('${job.id}')">Show LinkedIn Message</button>
     <div id="outreach-${job.id}" class="outreach-msg hidden">${outreachText.replace(/\n/g, '<br>')}</div>`
-    : `<div class="match-label">Ready-to-send LinkedIn outreach message</div>
-    <div class="outreach-msg outreach-preview" aria-hidden="true">${outreachText.split('\n').filter(Boolean).slice(0, 2).join(' ')}</div>
-    <button class="btn-outreach" onclick="startCheckout('premium');return false;">Unlock ready-to-send outreach</button>`;
+      : `<div class="outreach-msg">${outreachText.replace(/\n/g, '<br>')}</div>`}
+  </div>`;
+
+  const showcaseNote = showcase
+    ? `<div class="showcase-note">This is what Premium unlocks for every match. <a href="#" onclick="openUpgradeModal();return false;">Unlock Premium</a></div>`
+    : '';
+  const detailHtml = (isPremium || showcase)
+    ? missingSection + tipSection + outreachSection
+    : `
+  <div class="locked-details gated-detail">
+    <div class="locked-blur" aria-hidden="true">${missingSection}${tipSection}${outreachSection}</div>
+    <div class="locked-overlay">
+      <span class="locked-pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Premium detail</span>
+      <button class="btn-outreach" onclick="openUpgradeModal();return false;">Unlock skill gaps + outreach</button>
+    </div>
+  </div>`;
 
   const titleEsc   = job.title.replace(/'/g, "\\'");
   const companyEsc = job.company.replace(/'/g, "\\'");
@@ -337,24 +404,13 @@ function buildCard(job, user, index, isPremium) {
     </div>
   </div>
 
+  ${showcaseNote}
+
   <div class="match-section">
     <div class="match-label">Why it matches your profile</div>
     <p>${job.why}</p>
   </div>
-
-  <div class="match-section">
-    <div class="match-label">Missing skills to improve your odds</div>
-    <ul class="missing-skills">${missingHtml}</ul>
-  </div>
-
-  <div class="match-section">
-    <div class="match-label">Application tip</div>
-    <p>${job.tip}</p>
-  </div>
-
-  <div class="match-section outreach-section">
-    ${outreachSection}
-  </div>
+  ${detailHtml}
 
   <div class="match-actions">
     <button class="btn-save" id="save-${job.id}" onclick="saveToTracker('${job.id}','${titleEsc}','${companyEsc}',${job.score})">
@@ -368,11 +424,12 @@ function buildCard(job, user, index, isPremium) {
 }
 
 /* Locked teaser: company, role, and score stay readable so the student knows exactly what
-   they'd get; the analysis underneath is their real data, blurred, one tap from checkout. */
+   they'd get; the analysis underneath is their real data, blurred. Tapping the card opens
+   the upgrade modal (peak intent); the explicit button goes straight to checkout. */
 function buildLockedCard(job, index, total) {
   const missingHtml = (job.missing || []).map(s => `<li>${s}</li>`).join('');
   return `
-<div class="match-card match-locked" onclick="startCheckout('premium')" title="Unlock Premium to reveal">
+<div class="match-card match-locked" onclick="openUpgradeModal()" title="Unlock Premium to reveal">
   <div class="match-card-header">
     <div class="match-card-info">
       <div class="match-rank">${index + 1}</div>
@@ -413,10 +470,100 @@ function buildUpgradeCta(total, lockedCount) {
   return `
 <div class="match-card upgrade-cta">
   <h3>${headline}</h3>
-  <p>Every match + ready-to-send outreach + a skill-gap roadmap. One-time $9.99 with a 14-day make-it-right guarantee.</p>
-  <a href="#" class="btn-primary btn-xl" onclick="startCheckout('premium');return false;">Unlock Premium &middot; $9.99</a>
+  <p>Every match + ready-to-send outreach + a skill-gap roadmap. One-time $9.99, delivered instantly, never expires.</p>
+  <a href="#" class="btn-primary btn-xl" onclick="startCheckout('premium');return false;">Unlock All My Matches &middot; $9.99</a>
   <p class="upgrade-cta-note">One payment, not a subscription. Secure Stripe checkout.</p>
 </div>`;
+}
+
+/* ====================================================
+   SOCIAL PROOF
+   Do not populate with fabricated numbers or fake testimonials — real data only.
+   weeklyMatchedStudents: wire to a real measured count (e.g. match runs from analytics or
+   server logs) before setting a number here.
+   testimonial: a real, collected quote used with the student's permission, e.g.
+   { quote: 'Landed 2 interviews', name: "Priya, CS '26" }.
+   While these are null the component renders nothing, everywhere it is placed.
+   ==================================================== */
+const SOCIAL_PROOF = { weeklyMatchedStudents: null, testimonial: null };
+
+function socialProofHtml() {
+  const bits = [];
+  if (typeof SOCIAL_PROOF.weeklyMatchedStudents === 'number' && SOCIAL_PROOF.weeklyMatchedStudents > 0) {
+    bits.push(`<div class="proof-stat">${SOCIAL_PROOF.weeklyMatchedStudents} students matched this week</div>`);
+  }
+  const t = SOCIAL_PROOF.testimonial;
+  if (t && t.quote && t.name) {
+    bits.push(`<blockquote class="proof-quote">&ldquo;${escHtml(t.quote)}&rdquo;<cite>${escHtml(t.name)}</cite></blockquote>`);
+  }
+  return bits.join('');
+}
+
+/* Fill the [data-social-proof] slots on the pricing cards; empty slots stay hidden. */
+function renderSocialProof() {
+  const html = socialProofHtml();
+  document.querySelectorAll('[data-social-proof]').forEach(el => {
+    el.innerHTML = html;
+    el.className = html ? 'social-proof' : 'hidden';
+  });
+}
+
+/* ====================================================
+   UPGRADE MODAL — shown when a free user tries to open a locked match.
+   The count is computed from the user's real scored matches, never hardcoded.
+   ==================================================== */
+let upgradeReturnFocus = null;
+
+function openUpgradeModal() {
+  const total = lastResults ? lastResults.matches.length : 0;
+  const remaining = Math.max(0, total - 3);
+  let m = document.getElementById('upgradeModal');
+  if (!m) {
+    m = document.createElement('div');
+    m.id = 'upgradeModal';
+    m.className = 'login-overlay';
+    m.innerHTML = `
+      <div class="login-card" role="dialog" aria-modal="true" aria-labelledby="upgradeHeadline">
+        <button class="login-close" onclick="closeUpgradeModal();return false;" aria-label="Close">&times;</button>
+        <h3 id="upgradeHeadline"></h3>
+        <p class="login-sub">Unlock all of them + ready-to-send outreach messages for $9.99, one time.</p>
+        <div id="upgradeProof" class="hidden"></div>
+        <button class="btn-primary btn-xl upgrade-go" onclick="startCheckout('premium');return false;">Unlock All My Matches &middot; $9.99</button>
+        <a href="#" class="upgrade-later" onclick="closeUpgradeModal();return false;">Maybe later</a>
+      </div>`;
+    document.body.appendChild(m);
+    m.addEventListener('click', (e) => { if (e.target === m) closeUpgradeModal(); });
+    m.addEventListener('keydown', upgradeModalKeydown);
+  }
+  document.getElementById('upgradeHeadline').textContent = remaining > 0
+    ? `You have ${remaining} more ${remaining === 1 ? 'match' : 'matches'} scored and waiting`
+    : 'Unlock your full results';
+  const proofEl = document.getElementById('upgradeProof');
+  const proof = socialProofHtml();
+  proofEl.innerHTML = proof;
+  proofEl.className = proof ? 'social-proof' : 'hidden';
+  upgradeReturnFocus = document.activeElement;
+  m.style.display = 'flex';
+  m.querySelector('.upgrade-go').focus();
+}
+
+/* Keyboard access: Esc closes, Tab stays inside the dialog. */
+function upgradeModalKeydown(e) {
+  if (e.key === 'Escape') { closeUpgradeModal(); return; }
+  if (e.key !== 'Tab') return;
+  const m = document.getElementById('upgradeModal');
+  const f = m.querySelectorAll('button, a[href]');
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+
+function closeUpgradeModal() {
+  const m = document.getElementById('upgradeModal');
+  if (m) m.style.display = 'none';
+  if (upgradeReturnFocus && typeof upgradeReturnFocus.focus === 'function') upgradeReturnFocus.focus();
+  upgradeReturnFocus = null;
 }
 
 function toggleOutreach(id) {
@@ -779,6 +926,7 @@ function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
    ==================================================== */
 renderTracker();
 restoreResults();
+renderSocialProof();
 
 /* ====================================================
    AUTH / ACCOUNTS (Supabase) — Google + email magic link
@@ -904,7 +1052,7 @@ const LOGIN_OFFERS = {
       <li class="feat-yes">Ready-to-send LinkedIn outreach for every match</li>
       <li class="feat-yes">Skill-gap roadmap + resume bullet suggestions</li>
     </ul>
-    <p class="login-offer-note">Not a subscription. Secure Stripe checkout with a 14-day make-it-right guarantee.</p>`,
+    <p class="login-offer-note">Not a subscription. Secure Stripe checkout. All sales final; access is delivered instantly and never expires.</p>`,
   report: `
     <div class="login-offer-title">Match Report <span>$29 one-time</span></div>
     <ul class="plan-features">

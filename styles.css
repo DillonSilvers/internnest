@@ -704,9 +704,11 @@ select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns
 /* ======================== PRICING ======================== */
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* Free + Premium side by side; the Report is a post-purchase add-on */
   gap: 24px;
   align-items: stretch;
+  max-width: 780px;
+  margin: 0 auto;
 }
 .price-card {
   background: var(--white);
@@ -1224,12 +1226,35 @@ body::before {
 .match-locked:hover .locked-pill { color: var(--glass-accent); }
 .locked-btn { white-space: nowrap; }
 
-/* free tier: outreach shows a short fading preview instead of the full message */
-.outreach-preview {
-  max-height: 62px; overflow: hidden; margin-bottom: 12px;
-  -webkit-mask-image: linear-gradient(180deg, #000 15%, transparent 96%);
-  mask-image: linear-gradient(180deg, #000 15%, transparent 96%);
+/* free tier: the #1 match is fully open as proof of what Premium looks like */
+.showcase-note {
+  font-size: 13px; font-weight: 700; color: var(--glass-accent);
+  background: rgba(91,75,255,.08); border: 1px solid rgba(91,75,255,.16);
+  border-radius: 10px; padding: 8px 14px; margin-bottom: 16px;
 }
+.showcase-note a { color: var(--glass-accent); }
+/* free tier: skill gaps, tip, and outreach on the other cards blur behind the upgrade */
+.gated-detail .locked-pill { font-size: 13px; padding: 8px 15px; }
+
+/* upgrade modal */
+.upgrade-go { width: 100%; justify-content: center; }
+.upgrade-later { display: block; text-align: center; margin-top: 14px; font-size: 14px; color: var(--gray-500); }
+.upgrade-later:hover { color: var(--glass-accent); }
+
+/* post-purchase confirmation: the Match Report add-on offer */
+.report-upsell {
+  text-align: left; background: rgba(91,75,255,.06); border: 1px solid rgba(91,75,255,.16);
+  border-radius: 14px; padding: 14px 16px; margin: 0 0 16px;
+}
+.report-upsell h4 { margin: 0 0 6px; font-size: 15px; }
+.report-upsell p { margin: 0 0 12px; font-size: 13.5px; color: var(--gray-700); }
+.report-upsell .btn-outline { width: 100%; justify-content: center; }
+
+/* social proof: renders only when real data is configured */
+.social-proof { margin-top: 14px; display: grid; gap: 10px; }
+.proof-stat { font-size: 13.5px; font-weight: 700; color: var(--glass-accent); text-align: center; }
+.proof-quote { margin: 0; font-size: 13.5px; color: var(--gray-700); font-style: italic; }
+.proof-quote cite { display: block; margin-top: 4px; font-style: normal; font-weight: 700; color: var(--gray-500); }
 
 /* free tier: upgrade block between the full and locked results */
 .upgrade-cta { text-align: center; }
