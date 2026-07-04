@@ -52,7 +52,7 @@ async function startCheckout(product) {
   // Require an account before any purchase, so Premium is always tied to a login.
   if (!authUser) {
     setPendingCheckout(product);
-    openLogin({ subtitle: 'Log in or create a free account to continue to checkout.' });
+    openLogin({ offer: product, subtitle: 'Log in or create a free account to continue to checkout.' });
     return;
   }
   try {
@@ -144,16 +144,30 @@ document.addEventListener('DOMContentLoaded', handlePaymentReturn);
    ==================================================== */
 /* Hero mini-form: stash the answers and continue on /get-matched */
 const heroMiniEl = document.getElementById('heroMiniForm');
-if (heroMiniEl) heroMiniEl.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const prefill = {
-    major: document.getElementById('hmMajor').value.trim(),
-    year:  document.getElementById('hmYear').value,
-    role:  document.getElementById('hmRole').value.trim(),
-  };
-  try { localStorage.setItem('inn_prefill', JSON.stringify(prefill)); } catch (err) { /* storage off — still navigate */ }
-  window.location.href = '/get-matched';
-});
+if (heroMiniEl) {
+  const hmYearEl = document.getElementById('hmYear');
+  const hmYearErrEl = document.getElementById('hmYearError');
+  hmYearEl.addEventListener('change', () => {
+    hmYearEl.classList.remove('field-error');
+    if (hmYearErrEl) hmYearErrEl.classList.add('hidden');
+  });
+  heroMiniEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!hmYearEl.value) {
+      hmYearEl.classList.add('field-error');
+      if (hmYearErrEl) hmYearErrEl.classList.remove('hidden');
+      hmYearEl.focus();
+      return;
+    }
+    const prefill = {
+      major: document.getElementById('hmMajor').value.trim(),
+      year:  hmYearEl.value,
+      role:  document.getElementById('hmRole').value.trim(),
+    };
+    try { localStorage.setItem('inn_prefill', JSON.stringify(prefill)); } catch (err) { /* storage off — still navigate */ }
+    window.location.href = '/get-matched';
+  });
+}
 
 /* Arriving from the hero mini-form: pre-fill and clear the stash */
 (function applyHeroPrefill() {
@@ -247,17 +261,16 @@ function renderResults(matches, user) {
     ? `<div style="grid-column:1/-1;text-align:center;padding:8px 0 24px"><a class="btn-outline" href="#" onclick="printReport();return false;">Print / Save as PDF</a></div>`
     : '';
   const locked = isPremium ? [] : matches.slice(shown.length);
-  document.getElementById('matchCards').innerHTML = shown.map((job, i) => buildCard(job, user, i)).join('')
-    + locked.map((job, i) => buildLockedCard(job, shown.length + i)).join('')
-    + (locked.length
-      ? `<div style="grid-column:1/-1;text-align:center;padding:24px"><a href="#" class="btn-primary btn-xl" onclick="startCheckout('premium');return false;">Unlock ${locked.length} more ${locked.length === 1 ? 'match' : 'matches'} + AI outreach &middot; $9.99 launch price</a></div>`
-      : '')
+  document.getElementById('matchCards').innerHTML = shown.map((job, i) => buildCard(job, user, i, isPremium)).join('')
+    + (isPremium ? '' : buildUpgradeCta(matches.length, locked.length))
+    + locked.map((job, i) => buildLockedCard(job, shown.length + i, matches.length)).join('')
+    + (locked.length ? buildUpgradeCta(matches.length, locked.length) : '')
     + reportBtn;
   section.classList.remove('hidden');
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function buildCard(job, user, index) {
+function buildCard(job, user, index, isPremium) {
   const scoreColor = job.score >= 90 ? '#16a34a' : job.score >= 80 ? '#2563eb' : '#d97706';
   const scoreBg   = job.score >= 90 ? '#dcfce7' : job.score >= 80 ? '#dbeafe' : '#fef3c7';
   const typeTag   = { Remote: 'tag-blue', Hybrid: 'tag-gray', 'In-Person': 'tag-gray' }[job.type] || 'tag-gray';
@@ -268,6 +281,16 @@ function buildCard(job, user, index) {
 
   const outreachText = (typeof job.outreach === 'string' && job.outreach) ? job.outreach
     : `Hi,\n\nI'm ${user.name} from ${user.school}. I'm interested in the ${job.title} role at ${job.company}.\n\nBest,\n${user.name}`;
+
+  /* Free tier: the outreach message is Premium (per the pricing page), so show only a short
+     fading preview with an unlock button instead of the reveal toggle. */
+  const outreachSection = isPremium
+    ? `<div class="match-label">Ready-to-send LinkedIn outreach message</div>
+    <button class="btn-outreach" onclick="toggleOutreach('${job.id}')">Show LinkedIn Message</button>
+    <div id="outreach-${job.id}" class="outreach-msg hidden">${outreachText.replace(/\n/g, '<br>')}</div>`
+    : `<div class="match-label">Ready-to-send LinkedIn outreach message</div>
+    <div class="outreach-msg outreach-preview" aria-hidden="true">${outreachText.split('\n').filter(Boolean).slice(0, 2).join(' ')}</div>
+    <button class="btn-outreach" onclick="startCheckout('premium');return false;">Unlock ready-to-send outreach</button>`;
 
   const titleEsc   = job.title.replace(/'/g, "\\'");
   const companyEsc = job.company.replace(/'/g, "\\'");
@@ -306,9 +329,7 @@ function buildCard(job, user, index) {
   </div>
 
   <div class="match-section outreach-section">
-    <div class="match-label">AI-generated LinkedIn outreach message</div>
-    <button class="btn-outreach" onclick="toggleOutreach('${job.id}')">Show LinkedIn Message</button>
-    <div id="outreach-${job.id}" class="outreach-msg hidden">${outreachText.replace(/\n/g, '<br>')}</div>
+    ${outreachSection}
   </div>
 
   <div class="match-actions">
@@ -322,29 +343,55 @@ function buildCard(job, user, index) {
 </div>`;
 }
 
-/* Locked teaser: the student's real remaining matches, blurred, one tap from checkout. */
-function buildLockedCard(job, index) {
+/* Locked teaser: company, role, and score stay readable so the student knows exactly what
+   they'd get; the analysis underneath is their real data, blurred, one tap from checkout. */
+function buildLockedCard(job, index, total) {
+  const missingHtml = (job.missing || []).map(s => `<li>${s}</li>`).join('');
   return `
 <div class="match-card match-locked" onclick="startCheckout('premium')" title="Unlock Premium to reveal">
-  <div class="locked-blur" aria-hidden="true">
-    <div class="match-card-header">
-      <div class="match-card-info">
-        <div class="match-rank">${index + 1}</div>
-        <div>
-          <h3>${job.title}</h3>
-          <p class="match-company">${job.company} &middot; ${job.location}</p>
-        </div>
+  <div class="match-card-header">
+    <div class="match-card-info">
+      <div class="match-rank">${index + 1}</div>
+      <div>
+        <h3>${job.title}</h3>
+        <p class="match-company">${job.company} &middot; ${job.location}</p>
       </div>
-      <div class="match-score" style="background:#dbeafe;color:#2563eb">${job.score}<small>/ 100</small></div>
     </div>
-    <div class="match-section">
-      <div class="match-label">Why it matches your profile</div>
-      <p>${job.why || ''}</p>
+    <div class="match-score" style="background:#dbeafe;color:#2563eb">${job.score}<small>/ 100</small></div>
+  </div>
+  <div class="locked-details">
+    <div class="locked-blur" aria-hidden="true">
+      <div class="match-section">
+        <div class="match-label">Why it matches your profile</div>
+        <p>${job.why || ''}</p>
+      </div>
+      <div class="match-section">
+        <div class="match-label">Missing skills to improve your odds</div>
+        <ul class="missing-skills">${missingHtml}</ul>
+      </div>
+      <div class="match-section">
+        <div class="match-label">Application tip</div>
+        <p>${job.tip || ''}</p>
+      </div>
+    </div>
+    <div class="locked-overlay">
+      <span class="locked-pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Match #${index + 1} &middot; unlock to reveal</span>
+      <button class="btn-primary locked-btn" onclick="event.stopPropagation();startCheckout('premium');return false;">Unlock all ${total} matches &middot; $9.99</button>
     </div>
   </div>
-  <div class="locked-overlay">
-    <span class="locked-pill"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Match #${index + 1} &middot; unlock to reveal</span>
-  </div>
+</div>`;
+}
+
+/* Upgrade block for free users: once right after the top 3 (peak value) and once after the
+   locked cards. The copy mirrors the pricing page so every claim stays literally true. */
+function buildUpgradeCta(total, lockedCount) {
+  const headline = lockedCount > 0 ? `Unlock all ${total} matches` : 'Unlock your full results';
+  return `
+<div class="match-card upgrade-cta">
+  <h3>${headline}</h3>
+  <p>Every match + ready-to-send outreach + a skill-gap roadmap. One-time $9.99 with a 14-day make-it-right guarantee.</p>
+  <a href="#" class="btn-primary btn-xl" onclick="startCheckout('premium');return false;">Unlock Premium &middot; $9.99</a>
+  <p class="upgrade-cta-note">One payment, not a subscription. Secure Stripe checkout.</p>
 </div>`;
 }
 
@@ -366,6 +413,47 @@ function renderTracker() {
     document.getElementById(`count-${stage}`).textContent = cards.length;
     document.getElementById(`col-${stage}`).innerHTML = cards.map(buildTrackerCard).join('');
   });
+  renderTrackerNotice();
+  highlightLastAdded();
+}
+
+/* Banner above the board: explains the example cards, or shows an empty state with a next step. */
+function renderTrackerNotice() {
+  const n = document.getElementById('trackerNotice');
+  if (!n) return;
+  if (demoTracker) {
+    n.className = 'tracker-notice';
+    n.innerHTML = 'These are example cards showing how the board works. They disappear the moment you save your first match. <a href="/get-matched">Get matched free</a>';
+  } else if (trackerCards.length === 0) {
+    n.className = 'tracker-empty';
+    n.innerHTML = `<h3>Your tracker is empty</h3>
+      <p>Save internships from your match results, or add your own with the button below, and move them from saved to offer right here.</p>
+      <a href="/get-matched" class="btn-primary">Find my matches &rarr;</a>`;
+  } else {
+    n.className = 'hidden';
+    n.innerHTML = '';
+  }
+}
+
+/* One-time glow on the most recently saved card so it stands out on the board. The save
+   usually happens on the results page, so the marker persists until the board is next shown. */
+function markLastAdded(id) {
+  try { localStorage.setItem('inn_last_added', JSON.stringify({ id, t: Date.now() })); } catch (e) {}
+}
+function highlightLastAdded() {
+  let raw = null;
+  try { raw = localStorage.getItem('inn_last_added'); } catch (e) { return; }
+  if (!raw) return;
+  let mark = null;
+  try { mark = JSON.parse(raw); } catch (e) {}
+  const el = mark && mark.id && Date.now() - mark.t < 10 * 60 * 1000
+    ? document.getElementById(`tc-${mark.id}`) : null;
+  if (el || !mark || Date.now() - mark.t >= 10 * 60 * 1000) {
+    try { localStorage.removeItem('inn_last_added'); } catch (e) {}
+  }
+  if (!el) return;
+  el.classList.add('tracker-card-new');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function buildTrackerCard(card) {
@@ -383,7 +471,7 @@ function buildTrackerCard(card) {
   const notesLine = card.notes ? `<div class="tracker-notes">${escHtml(card.notes)}</div>` : '';
 
   return `
-<div class="tracker-card">
+<div class="tracker-card" id="tc-${card.id}">
   <div class="tracker-card-top">
     <div>
       <div class="tracker-title">${escHtml(card.title)}${demoTracker ? ' <span class="tracker-demo-tag">example</span>' : ''}</div>
@@ -417,6 +505,7 @@ function saveToTracker(jobId, title, company, score) {
   }
   clearDemoCards(); // first real save replaces the examples
   trackerCards.push({ id: `m-${jobId}`, title, company, stage: 'saved', score });
+  markLastAdded(`m-${jobId}`);
   saveTracker();
   renderTracker();
   markBtnDone(`save-${jobId}`, 'Saved', '#f0fdf4', '#16a34a');
@@ -432,6 +521,7 @@ function markApplied(jobId, title, company, score) {
     clearDemoCards();
     trackerCards.push({ id: `m-${jobId}`, title, company, stage: 'applied', score });
   }
+  markLastAdded(`m-${jobId}`);
   saveTracker();
   renderTracker();
   markBtnDone(`apply-${jobId}`, 'Marked Applied', '#dbeafe', '#1d4ed8');
@@ -481,12 +571,14 @@ function openAddCard() {
       const company = document.getElementById('acCompany').value.trim();
       if (!title || !company) return;
       clearDemoCards();
+      const newId = `c-${cardCounter++}`;
       trackerCards.push({
-        id: `c-${cardCounter++}`, title, company,
+        id: newId, title, company,
         stage: document.getElementById('acStage').value, score: 0,
         link: document.getElementById('acLink').value.trim(),
         notes: document.getElementById('acNotes').value.trim(),
       });
+      markLastAdded(newId);
       saveTracker();
       renderTracker();
       document.getElementById('addCardForm').reset();
@@ -776,6 +868,28 @@ async function initAuth() {
 document.addEventListener('DOMContentLoaded', initAuth);
 
 /* ---- login modal ---- */
+/* Offer summaries shown above the login options when the modal is opened from a purchase
+   button, so the buyer sees what they are getting at the moment they commit. The copy
+   mirrors the pricing page so every claim stays literally true. */
+const LOGIN_OFFERS = {
+  premium: `
+    <div class="login-offer-title">Premium Unlock <span>$9.99 one-time</span></div>
+    <ul class="plan-features">
+      <li class="feat-yes">Every match unlocked, not just your top 3</li>
+      <li class="feat-yes">Ready-to-send LinkedIn outreach for every match</li>
+      <li class="feat-yes">Skill-gap roadmap + resume bullet suggestions</li>
+    </ul>
+    <p class="login-offer-note">Not a subscription. Secure Stripe checkout with a 14-day make-it-right guarantee.</p>`,
+  report: `
+    <div class="login-offer-title">Match Report <span>$29 one-time</span></div>
+    <ul class="plan-features">
+      <li class="feat-yes">Everything in Premium</li>
+      <li class="feat-yes">Printable match report (PDF)</li>
+      <li class="feat-yes">Top 10 ranked internships with full skill-gap analysis</li>
+    </ul>
+    <p class="login-offer-note">One-time payment. Secure Stripe checkout.</p>`,
+};
+
 function openLogin(opts) {
   const subtitle = (opts && opts.subtitle) || 'Save your matches and keep Premium across devices.';
   let m = document.getElementById('loginModal');
@@ -787,6 +901,7 @@ function openLogin(opts) {
       <div class="login-card" role="dialog" aria-modal="true">
         <button class="login-close" onclick="closeLogin();return false;" aria-label="Close">&times;</button>
         <h3>Log in or sign up</h3>
+        <div id="loginOffer" class="hidden"></div>
         <p class="login-sub" id="loginSub">Save your matches and keep Premium across devices.</p>
         <button class="login-google" onclick="signInGoogle();return false;">
           <span class="g">G</span> Continue with Google
@@ -803,6 +918,13 @@ function openLogin(opts) {
   }
   const sub = document.getElementById('loginSub');
   if (sub) sub.textContent = subtitle;
+  // The modal is reused across opens: show the offer for purchases, clear it otherwise.
+  const offerEl = document.getElementById('loginOffer');
+  if (offerEl) {
+    const offer = opts && opts.offer && LOGIN_OFFERS[opts.offer];
+    offerEl.innerHTML = offer || '';
+    offerEl.className = offer ? 'login-offer' : 'hidden';
+  }
   m.style.display = 'flex';
 }
 function closeLogin() {

@@ -187,6 +187,26 @@ p { margin: 0; }
   color: var(--gray-500); background: rgba(120,120,140,.12);
   padding: 1px 7px; border-radius: 999px; vertical-align: 2px;
 }
+/* board banner: example-cards explainer, or an empty state with a next step */
+.tracker-notice {
+  max-width: 720px; margin: 0 auto 22px; padding: 12px 18px; border-radius: 14px;
+  background: rgba(91,75,255,.07); border: 1px solid rgba(91,75,255,.16);
+  color: var(--gray-700); font-size: 14.5px; text-align: center;
+}
+.tracker-notice a { color: var(--glass-accent); font-weight: 700; }
+.tracker-empty {
+  max-width: 560px; margin: 0 auto 26px; padding: 34px 28px; text-align: center;
+  border: 1.5px dashed rgba(91,75,255,.35); border-radius: var(--radius-lg); color: var(--gray-700);
+}
+.tracker-empty h3 { margin: 0 0 8px; font-size: 20px; }
+.tracker-empty p { margin: 0 0 18px; }
+/* one-time glow so a just-saved card stands out among the others */
+@keyframes trackerCardNew {
+  0% { box-shadow: 0 0 0 3px rgba(91,75,255,.55); }
+  100% { box-shadow: 0 0 0 3px rgba(91,75,255,0); }
+}
+.tracker-card-new { animation: trackerCardNew 1.4s ease-out 2; }
+@media (prefers-reduced-motion: reduce) { .tracker-card-new { animation: none; box-shadow: 0 0 0 3px rgba(91,75,255,.4); } }
 .logo-blue { color: var(--blue); }
 .logo-tag {
   display: inline-block;
@@ -299,6 +319,8 @@ p { margin: 0; }
 .hero-mini-btn { width: 100%; justify-content: center; }
 .hero-mini-link { font-size: 14px; color: var(--gray-700); text-align: center; text-decoration: none; }
 .hero-mini-link:hover { color: var(--glass-accent); }
+.hero-mini-error { font-size: 12.5px; font-weight: 600; color: var(--red); }
+.hero-mini select.field-error { border-color: var(--red); background: var(--red-light); }
 
 /* Hero Visual */
 .hero-visual { position: relative; height: 400px; }
@@ -1042,6 +1064,16 @@ body::before {
 }
 .login-card h3 { font-size: 22px; margin: 0 0 6px; }
 .login-sub { color: var(--gray-500); font-size: 14px; margin: 0 0 22px; }
+/* offer summary shown when the modal is opened from an Unlock / Buy button */
+.login-offer {
+  text-align: left; background: rgba(91,75,255,.06); border: 1px solid rgba(91,75,255,.16);
+  border-radius: 14px; padding: 14px 16px; margin: 10px 0 16px;
+}
+.login-offer-title { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-weight: 800; font-size: 15px; margin-bottom: 10px; }
+.login-offer-title span { color: var(--glass-accent); font-size: 13.5px; white-space: nowrap; }
+.login-offer .plan-features { gap: 7px; }
+.login-offer .plan-features li { font-size: 13.5px; }
+.login-offer-note { margin: 10px 0 0; font-size: 12.5px; color: var(--gray-500); }
 .login-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 24px; line-height: 1; color: var(--gray-500); cursor: pointer; }
 .login-google {
   width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -1172,10 +1204,16 @@ body::before {
   white-space: nowrap;
 }
 
-/* locked match teasers: real cards, blurred, one tap from checkout */
+/* locked match teasers: header (company, role, score) stays readable, details blur */
 .match-locked { position: relative; cursor: pointer; overflow: hidden; }
 .match-locked .locked-blur { filter: blur(9px); user-select: none; pointer-events: none; }
-.locked-overlay { position: absolute; inset: 0; display: grid; place-items: center; }
+.locked-details { position: relative; margin-top: 4px; }
+.locked-overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px; padding: 16px;
+  background: linear-gradient(180deg, rgba(241,238,255,0), rgba(241,238,255,.65) 75%);
+  border-radius: var(--radius);
+}
 .locked-pill {
   display: inline-flex; align-items: center; gap: 7px; font-weight: 800; font-size: 14px; color: #2c2658;
   background: linear-gradient(150deg, rgba(255,255,255,.82), rgba(255,255,255,.55));
@@ -1184,3 +1222,17 @@ body::before {
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 .match-locked:hover .locked-pill { color: var(--glass-accent); }
+.locked-btn { white-space: nowrap; }
+
+/* free tier: outreach shows a short fading preview instead of the full message */
+.outreach-preview {
+  max-height: 62px; overflow: hidden; margin-bottom: 12px;
+  -webkit-mask-image: linear-gradient(180deg, #000 15%, transparent 96%);
+  mask-image: linear-gradient(180deg, #000 15%, transparent 96%);
+}
+
+/* free tier: upgrade block between the full and locked results */
+.upgrade-cta { text-align: center; }
+.upgrade-cta h3 { font-size: 22px; margin: 0 0 8px; }
+.upgrade-cta p { color: var(--gray-700); margin: 0 auto 18px; max-width: 520px; }
+.upgrade-cta p.upgrade-cta-note { font-size: 13px; color: var(--gray-500); margin: 14px auto 0; }
