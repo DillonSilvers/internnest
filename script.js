@@ -20,6 +20,7 @@ function clearDemoCards() {
 const STAGES = ['saved', 'applied', 'interviewing', 'offer', 'rejected'];
 let cardCounter = 200;
 let lastResults = null;
+let resultsRestoredAt = null; // set when results came from storage, so the subheading says so
 
 /* Auth state (Supabase) — populated by initAuth() */
 let sbClient = null, authUser = null, authPremium = false, authProduct = null;
@@ -243,17 +244,40 @@ if (matchFormEl) matchFormEl.addEventListener('submit', async function (e) {
       '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray-500)">We couldn\'t load matches just now — please try again in a moment.</div>';
     return;
   }
+  saveResults(matches, user);
   renderResults(matches, user);
 });
 
-function renderResults(matches, user) {
+/* Results survive a refresh: each fresh run is saved in this browser and restored for up to
+   7 days (listings update weekly, so older results go stale). Premium gating is re-applied
+   on every render, so a refresh can never reveal locked content. */
+const RESULTS_TTL = 7 * 24 * 60 * 60 * 1000;
+function saveResults(matches, user) {
+  resultsRestoredAt = null; // a fresh run, not a restore
+  try { localStorage.setItem('inn_results', JSON.stringify({ matches, user, t: Date.now() })); } catch (e) {}
+}
+function restoreResults() {
+  if (!document.getElementById('matchForm')) return; // results live on the form page only
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem('inn_results')); } catch (e) {}
+  if (!saved || !Array.isArray(saved.matches) || !saved.matches.length || !saved.user
+      || typeof saved.t !== 'number' || Date.now() - saved.t > RESULTS_TTL) {
+    try { localStorage.removeItem('inn_results'); } catch (e) {}
+    return;
+  }
+  resultsRestoredAt = saved.t;
+  renderResults(saved.matches, saved.user, { scroll: false });
+}
+
+function renderResults(matches, user, opts) {
   lastResults = { matches, user };
   const section = document.getElementById('results');
   section.classList.remove('scanning');
   document.getElementById('resultsHeading').textContent =
     `${user.name}, here are your top ${user.industry} matches`;
-  document.getElementById('resultsSubheading').textContent =
-    `We found ${matches.length} personalized internship matches based on your profile. Each includes your fit score, skill gaps, and a ready-to-send outreach message.`;
+  document.getElementById('resultsSubheading').textContent = resultsRestoredAt
+    ? `Your matches from ${new Date(resultsRestoredAt).toLocaleDateString(undefined, { month: 'long', day: 'numeric' })}. Fill out the form above to run a fresh search.`
+    : `We found ${matches.length} personalized internship matches based on your profile. Each includes your fit score, skill gaps, and a ready-to-send outreach message.`;
 
   const isPremium = isUnlocked();
   const shown = isPremium ? matches : matches.slice(0, 3);
@@ -267,7 +291,7 @@ function renderResults(matches, user) {
     + (locked.length ? buildUpgradeCta(matches.length, locked.length) : '')
     + reportBtn;
   section.classList.remove('hidden');
-  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!opts || opts.scroll !== false) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function buildCard(job, user, index, isPremium) {
@@ -754,6 +778,7 @@ function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
    INIT
    ==================================================== */
 renderTracker();
+restoreResults();
 
 /* ====================================================
    AUTH / ACCOUNTS (Supabase) — Google + email magic link
@@ -852,7 +877,7 @@ async function initAuth() {
     await refreshPremium();
     renderAuthNav();
     if (authUser && demoTracker) { clearDemoCards(); renderTracker(); } // signed-in users never see example cards
-    if (lastResults) renderResults(lastResults.matches, lastResults.user); // re-gate if matches already on screen
+    if (lastResults) renderResults(lastResults.matches, lastResults.user, { scroll: false }); // re-gate if matches already on screen
     sbClient.auth.onAuthStateChange(async (_event, sess) => {
       authUser = sess ? sess.user : null;
       await refreshPremium();
@@ -860,7 +885,7 @@ async function initAuth() {
       if (authUser && resumePendingCheckout()) return; // returning from login to finish a purchase
       closeLogin();
       if (authUser && demoTracker) { clearDemoCards(); renderTracker(); }
-      if (lastResults) renderResults(lastResults.matches, lastResults.user);
+      if (lastResults) renderResults(lastResults.matches, lastResults.user, { scroll: false });
     });
     if (authUser) resumePendingCheckout(); // restored session (e.g. magic link opened in a new tab)
   } catch (e) { /* auth is optional; the rest of the site works without it */ }
