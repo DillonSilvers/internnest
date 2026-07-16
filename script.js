@@ -638,7 +638,7 @@ function buildTrackerCard(card) {
   const prevBtn = prev ? `<button class="tracker-btn" onclick="moveCard('${card.id}','${prev}')">${prevLabel}</button>` : '';
   const nextBtn = next ? `<button class="tracker-btn primary" onclick="moveCard('${card.id}','${next}')">${nextLabel}</button>` : '';
   const scoreDisplay = card.score > 0 ? `${card.score}%` : '';
-  const linkIcon = card.link ? ` <a href="${escHtml(card.link)}" target="_blank" rel="noopener" class="tracker-link" title="Open listing">&#8599;</a>` : '';
+  const linkIcon = card.link ? ` <a href="${escHtml(card.link)}" target="_blank" rel="noopener" class="tracker-link" title="Open listing"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><path d="M7 17L17 7M9 7h8v8"/></svg></a>` : '';
   const notesLine = card.notes ? `<div class="tracker-notes">${escHtml(card.notes)}</div>` : '';
 
   return `
