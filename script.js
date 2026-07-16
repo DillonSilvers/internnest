@@ -180,7 +180,7 @@ function closePurchaseModal() {
 
 
 /* ====================================================
-   FORM SUBMISSION → GENERATE MATCHES
+   FORM SUBMISSION -> GENERATE MATCHES
    ==================================================== */
 /* Hero mini-form: stash the answers and continue on /get-matched */
 const heroMiniEl = document.getElementById('heroMiniForm');
@@ -417,7 +417,7 @@ function buildCard(job, user, index, isPremium) {
       Save to Tracker
     </button>
     <a class="btn-primary" id="apply-${job.id}" href="${job.application_url || '#'}" target="_blank" rel="noopener" onclick="markApplied('${job.id}','${titleEsc}','${companyEsc}',${job.score})">
-      Apply Now →
+      Apply Now
     </a>
   </div>
 </div>`;
@@ -599,7 +599,7 @@ function renderTrackerNotice() {
     n.className = 'tracker-empty';
     n.innerHTML = `<h3>Your tracker is empty</h3>
       <p>Save internships from your match results, or add your own with the button below, and move them from saved to offer right here.</p>
-      <a href="/get-matched" class="btn-primary">Find my matches &rarr;</a>`;
+      <a href="/get-matched" class="btn-primary">Find my matches</a>`;
   } else {
     n.className = 'hidden';
     n.innerHTML = '';
@@ -633,8 +633,8 @@ function buildTrackerCard(card) {
   const prev = idx > 0 ? STAGES[idx - 1] : null;
   const next = idx < STAGES.length - 1 ? STAGES[idx + 1] : null;
 
-  const prevLabel = prev ? `← ${capitalize(prev)}` : '';
-  const nextLabel = next ? `${capitalize(next)} →` : '';
+  const prevLabel = prev ? `Back to ${capitalize(prev)}` : '';
+  const nextLabel = next ? `Move to ${capitalize(next)}` : '';
   const prevBtn = prev ? `<button class="tracker-btn" onclick="moveCard('${card.id}','${prev}')">${prevLabel}</button>` : '';
   const nextBtn = next ? `<button class="tracker-btn primary" onclick="moveCard('${card.id}','${next}')">${nextLabel}</button>` : '';
   const scoreDisplay = card.score > 0 ? `${card.score}%` : '';
@@ -1011,7 +1011,7 @@ function renderAuthNav() {
     }
   }
   // Signed-in users never see "Start Free" — the CTA reads Get Matched instead.
-  const ctaText = authUser ? 'Get Matched →' : 'Start Free →';
+  const ctaText = authUser ? 'Get Matched' : 'Start Free';
   document.querySelectorAll('.nav-cta').forEach((a) => { a.textContent = ctaText; });
   if (mm) { const mmCta = mm.querySelector('.btn-primary'); if (mmCta) mmCta.textContent = ctaText; }
 }
