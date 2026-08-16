@@ -1186,14 +1186,6 @@ body::before {
 .resume-mode .form-grid .req { display: none; }
 .resume-mode label[for="industry"] .req { display: inline; }
 
-/* launch-price anchor */
-.plan-strike { font-size: 20px; font-weight: 700; color: var(--gray-500); text-decoration: line-through; margin-right: 8px; }
-.launch-chip {
-  font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--glass-accent);
-  background: rgba(91,75,255,.12); padding: 3px 9px; border-radius: 999px; margin-left: 10px;
-  white-space: nowrap;
-}
-
 /* locked match teasers: header (company, role, score) stays readable, details blur */
 .match-locked { position: relative; cursor: pointer; overflow: hidden; }
 .match-locked .locked-blur { filter: blur(9px); user-select: none; pointer-events: none; }

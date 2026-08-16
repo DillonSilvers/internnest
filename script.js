@@ -1052,7 +1052,7 @@ const LOGIN_OFFERS = {
       <li class="feat-yes">Ready-to-send LinkedIn outreach for every match</li>
       <li class="feat-yes">Skill-gap roadmap + resume bullet suggestions</li>
     </ul>
-    <p class="login-offer-note">Not a subscription. Secure Stripe checkout. All sales final; access is delivered instantly and never expires.</p>`,
+    <p class="login-offer-note">Not a subscription. Secure Stripe checkout. Access is delivered instantly and never expires; if it did not work as expected, email us within 14 days and we will make it right.</p>`,
   report: `
     <div class="login-offer-title">Match Report <span>$29 one-time</span></div>
     <ul class="plan-features">
